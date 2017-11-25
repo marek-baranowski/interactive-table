@@ -38,5 +38,13 @@ export default [
     pattern: "Spotted",
     rating: 5,
     price: 285
+  },
+  {
+    name: "Hatson",
+    animal: "Snake",
+    colour: "White",
+    pattern: "Spotted",
+    rating: 5,
+    price: 439
   }
 ];

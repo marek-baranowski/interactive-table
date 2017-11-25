@@ -5,7 +5,9 @@ import data from "./data";
 
 useStrict(true);
 
-const stringComparator = (str, target) => str.toUpperCase().startsWith(target.toUpperCase());
+const stringComparator = (str, target) =>
+  str.toUpperCase().startsWith(target.toUpperCase());
+const getRange = array => [Math.min(...array), Math.max(...array)];
 
 const keys = {
   NAME: "name",
@@ -30,7 +32,7 @@ const Filter = types
     value: ""
   })
   .actions(self => ({
-    setValue: value => self.value = value
+    setValue: value => (self.value = value)
   }));
 
 const Filter2 = types
@@ -41,52 +43,75 @@ const Filter2 = types
     isSelected: value => self.selectedValues.includes(value)
   }))
   .actions(self => ({
-    toggleValue: value => self.selectedValues.includes(value) ?
-      self.selectedValues.remove(value) :
-      self.selectedValues.push(value)
+    toggleValue: value =>
+      self.selectedValues.includes(value)
+        ? self.selectedValues.remove(value)
+        : self.selectedValues.push(value)
   }));
 
-const Animal = types
+const Filter3 = types
   .model({
-    name: types.string,
-    animal: types.string,
-    colour: types.string,
-    pattern: types.string,
-    rating: types.number,
-    price: types.number
-  });
+    selectedRange: types.array(types.number)
+  })
+  .actions(self => ({
+    setSelectedRange: range => (self.selectedRange = range)
+  }));
 
-const Column = types
-  .model({
-    key: types.string,
-    header: types.string
-  });
+const Animal = types.model({
+  name: types.string,
+  animal: types.string,
+  colour: types.string,
+  pattern: types.string,
+  rating: types.number,
+  price: types.number
+});
+
+const Column = types.model({
+  key: types.string,
+  header: types.string
+});
 
 const PetStore = types
   .model({
     animals: types.array(Animal),
     columns: types.array(Column),
-    filters: types.array(Filter),
-    filters2: types.array(Filter2),
+    filter: types.array(Filter),
+    filter2: types.array(Filter2),
+    filter3: types.array(Filter3)
   })
   .views(self => ({
     get filteredAnimals() {
-      const {filters: [filter], filters2: [filter2]} = self;
+      const { filter: [filter], filter2: [filter2], filter3: [filter3] } = self;
       const predicates = [
         animal => stringComparator(animal.name, filter.value),
-        animal => filter2.selectedValues.length > 0 ? filter2.isSelected(animal.animal) : true
+        animal =>
+          filter2.selectedValues.length > 0
+            ? filter2.isSelected(animal.animal)
+            : true,
+        ({ price }) =>
+          price >= filter3.selectedRange[0] && price <= filter3.selectedRange[1]
       ];
 
-      return self.animals.filter(animal => predicates.map(fn => fn(animal)).every(result => result))
+      return self.animals.filter(animal =>
+        predicates.map(fn => fn(animal)).every(result => result)
+      );
     },
     get uniqueValues() {
-      return uniq(self.animals.map(({animal}) => animal))
+      return uniq(self.animals.map(({ animal }) => animal));
+    },
+    get pricesRange() {
+      const prices = self.animals.map(({ price }) => price);
+
+      return getRange(prices);
     }
   }));
 
 export default PetStore.create({
   animals: data,
   columns,
-  filters: [Filter.create()],
-  filters2: [Filter2.create({selectedValues: []})],
+  filter: [Filter.create()],
+  filter2: [Filter2.create({ selectedValues: [] })],
+  filter3: [
+    Filter3.create({ selectedRange: getRange(data.map(({ price }) => price)) })
+  ]
 });
