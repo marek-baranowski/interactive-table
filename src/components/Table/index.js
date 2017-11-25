@@ -5,16 +5,16 @@ import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 
 export default inject("store")(
   observer(({ store }) => {
-    const { animals, columns, filters } = store;
+    const { columns, filters, filteredAnimals } = store;
 
     return (
       <div>
         <Input
           className="w-25"
-          value={filters.name.value}
-          onChange={({ target }) => filters.name.setValue(target.value)}
+          value={filters[0].value}
+          onChange={({ target }) => filters[0].setValue(target.value)}
         />
-        <BootstrapTable data={animals} striped hover>
+        <BootstrapTable data={filteredAnimals} striped hover>
           {columns.map(({ key, header }, i) => (
             <TableHeaderColumn isKey={i === 0} dataField={key} key={key}>
               {header}

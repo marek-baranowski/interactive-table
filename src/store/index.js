@@ -1,7 +1,10 @@
-import { useStrict, observable, action } from "mobx";
+import { useStrict } from "mobx";
+import { types } from "mobx-state-tree";
 import data from "./data";
 
 useStrict(true);
+
+const stringComparator = (str, target) => str.toUpperCase().startsWith(target.toUpperCase());
 
 const keys = {
   NAME: "name",
@@ -21,17 +24,44 @@ const columns = [
   { key: keys.PRICE, header: "Price" }
 ];
 
-const filters = observable({
-  [keys.NAME]: {
-    value: "",
-    setValue: action(function(value) {
-      this.value = value;
-    })
-  }
-});
+const Filter = types
+  .model({
+    value: ""
+  })
+  .actions(self => ({
+    setValue: value => self.value = value
+  }));
 
-export default observable({
+const Animal = types
+  .model({
+    name: types.string,
+    animal: types.string,
+    colour: types.string,
+    pattern: types.string,
+    rating: types.number,
+    price: types.number
+  });
+
+const Column = types
+  .model({
+    key: types.string,
+    header: types.string
+  });
+
+const PetStore = types
+  .model("PetStore", {
+    animals: types.array(Animal),
+    columns: types.array(Column),
+    filters: types.array(Filter)
+  })
+  .views(self => ({
+    get filteredAnimals() {
+      return self.animals.filter(animal => stringComparator(animal.name, self.filters[0].value))
+    }
+  }));
+
+export default PetStore.create({
+  animals: data,
   columns,
-  filters,
-  animals: data
+  filters: [Filter.create()]
 });
