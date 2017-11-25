@@ -1,5 +1,6 @@
 import { useStrict } from "mobx";
 import { types } from "mobx-state-tree";
+import uniq from "lodash/uniq";
 import data from "./data";
 
 useStrict(true);
@@ -32,6 +33,19 @@ const Filter = types
     setValue: value => self.value = value
   }));
 
+const Filter2 = types
+  .model({
+    selectedValues: types.array(types.string)
+  })
+  .views(self => ({
+    isSelected: value => self.selectedValues.includes(value)
+  }))
+  .actions(self => ({
+    toggleValue: value => self.selectedValues.includes(value) ?
+      self.selectedValues.remove(value) :
+      self.selectedValues.push(value)
+  }));
+
 const Animal = types
   .model({
     name: types.string,
@@ -49,19 +63,30 @@ const Column = types
   });
 
 const PetStore = types
-  .model("PetStore", {
+  .model({
     animals: types.array(Animal),
     columns: types.array(Column),
-    filters: types.array(Filter)
+    filters: types.array(Filter),
+    filters2: types.array(Filter2),
   })
   .views(self => ({
     get filteredAnimals() {
-      return self.animals.filter(animal => stringComparator(animal.name, self.filters[0].value))
+      const {filters: [filter], filters2: [filter2]} = self;
+      const predicates = [
+        animal => stringComparator(animal.name, filter.value),
+        animal => filter2.selectedValues.length > 0 ? filter2.isSelected(animal.animal) : true
+      ];
+
+      return self.animals.filter(animal => predicates.map(fn => fn(animal)).every(result => result))
+    },
+    get uniqueValues() {
+      return uniq(self.animals.map(({animal}) => animal))
     }
   }));
 
 export default PetStore.create({
   animals: data,
   columns,
-  filters: [Filter.create()]
+  filters: [Filter.create()],
+  filters2: [Filter2.create({selectedValues: []})],
 });
