@@ -10,9 +10,7 @@ export default inject("store")(
   observer(({ store }) => {
     const {
       columns,
-      filter: [filter],
-      filter2: [filter2],
-      filter3: [filter3],
+      filters: [filter, filter2, filter3],
       filteredAnimals,
       uniqueValues,
       pricesRange: [min, max]

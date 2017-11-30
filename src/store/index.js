@@ -27,20 +27,26 @@ const columns = [
   { key: keys.PRICE, header: "Price" }
 ];
 
-const Filter = types
+const StringFilter = types
   .model({
     value: ""
   })
+  .views(self => ({
+    compare: animal => stringComparator(animal.name, self.value)
+  }))
   .actions(self => ({
     setValue: value => (self.value = value)
   }));
 
-const Filter2 = types
+const MultiSelectFilter = types
   .model({
     selectedValues: types.array(types.string)
   })
   .views(self => ({
-    isSelected: value => self.selectedValues.includes(value)
+    isSelected: value => self.selectedValues.includes(value),
+    compare: animal => self.selectedValues.length > 0
+      ? self.isSelected(animal.animal)
+      : true
   }))
   .actions(self => ({
     toggleValue: value =>
@@ -49,10 +55,14 @@ const Filter2 = types
         : self.selectedValues.push(value)
   }));
 
-const Filter3 = types
+const RangeFilter = types
   .model({
     selectedRange: types.array(types.number)
   })
+  .views(self => ({
+    compare: ({ price }) =>
+      price >= self.selectedRange[0] && price <= self.selectedRange[1]
+  }))
   .actions(self => ({
     setSelectedRange: range => (self.selectedRange = range)
   }));
@@ -75,25 +85,12 @@ const PetStore = types
   .model({
     animals: types.array(Animal),
     columns: types.array(Column),
-    filter: types.array(Filter),
-    filter2: types.array(Filter2),
-    filter3: types.array(Filter3)
+    filters: types.array(types.union(StringFilter, MultiSelectFilter, RangeFilter))
   })
   .views(self => ({
     get filteredAnimals() {
-      const { filter: [filter], filter2: [filter2], filter3: [filter3] } = self;
-      const predicates = [
-        animal => stringComparator(animal.name, filter.value),
-        animal =>
-          filter2.selectedValues.length > 0
-            ? filter2.isSelected(animal.animal)
-            : true,
-        ({ price }) =>
-          price >= filter3.selectedRange[0] && price <= filter3.selectedRange[1]
-      ];
-
       return self.animals.filter(animal =>
-        predicates.map(fn => fn(animal)).every(result => result)
+        self.filters.map(({compare}) => compare(animal)).every(result => result)
       );
     },
     get uniqueValues() {
@@ -109,9 +106,9 @@ const PetStore = types
 export default PetStore.create({
   animals: data,
   columns,
-  filter: [Filter.create()],
-  filter2: [Filter2.create({ selectedValues: [] })],
-  filter3: [
-    Filter3.create({ selectedRange: getRange(data.map(({ price }) => price)) })
+  filters: [
+    StringFilter.create(),
+    MultiSelectFilter.create({ selectedValues: [] }),
+    RangeFilter.create({ selectedRange: getRange(data.map(({ price }) => price)) })
   ]
 });
