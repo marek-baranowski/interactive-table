@@ -1,9 +1,8 @@
 import { types } from "mobx-state-tree";
-import { uniq, orderBy } from "lodash";
+import orderBy from "lodash/orderBy";
 import { StringFilter, MultiSelectFilter, RangeFilter } from "./Filters";
 import { SORTING_ORDER_TYPES } from "../settings";
 
-export const getRange = array => [Math.min(...array), Math.max(...array)];
 
 export const Animal = types.model({
   name: types.string,
@@ -67,13 +66,5 @@ export const PetStore = types
       return sorting.column
         ? orderBy(filtered, sorting.column, sorting.order)
         : filtered;
-    },
-    getUniqueColumnValues(columnKey) {
-      return uniq(self.animals.map(animal => animal[columnKey]));
-    },
-    getColumnMinMaxRange(columnKey) {
-      const values = self.animals.map(animal => animal[columnKey]);
-
-      return getRange(values);
     }
   }));

@@ -1,5 +1,5 @@
 import { StringFilter, MultiSelectFilter, RangeFilter } from "./Filters";
-import { PetStore, getRange } from "./PetStore";
+import { PetStore } from "./PetStore";
 import data from "./data";
 
 const keys = {
@@ -16,7 +16,7 @@ const columns = [
   {
     key: keys.ANIMAL,
     header: "Animal",
-    filter: MultiSelectFilter.create({ selectedValues: [] })
+    filter: MultiSelectFilter.create()
   },
   { key: keys.COLOUR, header: "Colour" },
   { key: keys.PATTERN, header: "Pattern" },
@@ -24,9 +24,7 @@ const columns = [
   {
     key: keys.PRICE,
     header: "Price",
-    filter: RangeFilter.create({
-      selectedRange: getRange(data.map(({ price }) => price))
-    }),
+    filter: RangeFilter.create(),
     sortable: true
   }
 ];

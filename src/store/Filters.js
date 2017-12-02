@@ -1,5 +1,7 @@
-import { types, getType } from "mobx-state-tree";
+import { types, getType, getParent, getRoot } from "mobx-state-tree";
+import { isEmpty, uniq } from "lodash";
 import { FILTER_TYPES } from "../settings";
+
 
 /* base properties and methods for all filters */
 export const createModelFromBase = comparator =>
@@ -10,6 +12,9 @@ export const createModelFromBase = comparator =>
     .views(self => ({
       get type() {
         return getType(self).name;
+      },
+      get columnKey() {
+        return getParent(self).key;
       },
       compare: record => comparator(record, self)
     }))
@@ -34,10 +39,15 @@ export const MultiSelectFilter = createModelFromBase(
 )
   .named(FILTER_TYPES.MULTI_SELECT_FILTER)
   .props({
-    selectedValues: types.array(types.string)
+    selectedValues: types.optional(types.array(types.string), [])
   })
-  .views(({ selectedValues }) => ({
-    isSelected: value => selectedValues.includes(value)
+  .views(self => ({
+    get uniqueColumnValues() {
+      const { animals } = getRoot(self);
+
+      return uniq(animals.map(animal => animal[self.columnKey]));
+    },
+    isSelected: value => self.selectedValues.includes(value)
   }))
   .actions(self => ({
     toggleValue: value =>
@@ -47,13 +57,26 @@ export const MultiSelectFilter = createModelFromBase(
   }));
 
 export const RangeFilter = createModelFromBase(
-  (record, { selectedRange }) =>
-    record >= selectedRange[0] && record <= selectedRange[1]
+  (record, { selectedRange: [min, max] }) =>
+    record >= min && record <= max
 )
   .named(FILTER_TYPES.RANGE_FILTER)
   .props({
-    selectedRange: types.array(types.number)
+    selectedRange: types.optional(types.array(types.number), [])
   })
+  .views(self => ({
+    get columnMinMaxRange() {
+      const { animals } = getRoot(self);
+      const values = animals.map(animal => animal[self.columnKey]);
+
+      return [Math.min(...values), Math.max(...values)];
+    }
+  }))
   .actions(self => ({
-    setSelectedRange: range => (self.selectedRange = range)
+    setSelectedRange: range => (self.selectedRange = range),
+    afterAttach: () => {
+      if (isEmpty(self.selectedRange)) {
+        self.setSelectedRange(self.columnMinMaxRange);
+      }
+    }
   }));

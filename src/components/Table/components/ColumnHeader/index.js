@@ -17,9 +17,10 @@ const filtersToComponentsMapping = {
   [FILTER_TYPES.RANGE_FILTER]: RangeFilter
 };
 
-export const ColumnHeader = ({ store, column }) => {
-  const { key, header, filter, sortable } = column;
-
+export const ColumnHeader = ({
+  store,
+  column: { key, header, filter, sortable }
+}) => {
   const renderSortingButton = () => {
     if (!sortable) {
       return null;
@@ -60,7 +61,7 @@ export const ColumnHeader = ({ store, column }) => {
           toggle={filter.toggleVisibility}
         >
           <PopoverBody>
-            {filtersToComponentsMapping[filter.type](column, store)}
+            {filtersToComponentsMapping[filter.type](filter)}
           </PopoverBody>
         </Popover>
       </span>
