@@ -13,7 +13,7 @@ export const FILTER_TYPES = {
   RANGE_FILTER: "RangeFilter"
 };
 
-export const SORTING_ORDER_TYPES = {
+export const SORT_ORDER_TYPES = {
   ASCENDING: "asc",
   DESCENDING: "desc"
 };

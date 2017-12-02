@@ -21,7 +21,7 @@ export const createModelFromBase = comparator =>
       toggleVisibility: () => (self.isVisible = !self.isVisible)
     }));
 
-export const StringFilter = createModelFromBase(
+export const StringFilterModel = createModelFromBase(
   (record, { columnKey, value }) =>
     record[columnKey].toUpperCase().startsWith(value.toUpperCase())
 )
@@ -33,7 +33,7 @@ export const StringFilter = createModelFromBase(
     setValue: value => (self.value = value)
   }));
 
-export const MultiSelectFilter = createModelFromBase(
+export const MultiSelectFilterModel = createModelFromBase(
   (record, { columnKey, selectedValues, isSelected }) =>
     selectedValues.length > 0 ? isSelected(record[columnKey]) : true
 )
@@ -56,7 +56,7 @@ export const MultiSelectFilter = createModelFromBase(
         : self.selectedValues.push(value)
   }));
 
-export const RangeFilter = createModelFromBase(
+export const RangeFilterModel = createModelFromBase(
   (record, { columnKey, selectedRange }) => {
     if (isEmpty(selectedRange)) {
       return true;

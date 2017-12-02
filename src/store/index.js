@@ -1,15 +1,23 @@
-import { StringFilter, MultiSelectFilter, RangeFilter } from "./Filters";
-import { PetStore } from "./PetStore";
+import {
+  StringFilterModel,
+  MultiSelectFilterModel,
+  RangeFilterModel
+} from "./FilterModels";
+import DataStore from "./DataStore";
 import { petService } from "../service";
 import { ANIMAL_KEYS } from "../config";
 
 export const createStore = () => {
   const columns = [
-    { key: ANIMAL_KEYS.NAME, header: "Name", filter: StringFilter.create() },
+    {
+      key: ANIMAL_KEYS.NAME,
+      header: "Name",
+      filter: StringFilterModel.create()
+    },
     {
       key: ANIMAL_KEYS.ANIMAL,
       header: "Animal",
-      filter: MultiSelectFilter.create()
+      filter: MultiSelectFilterModel.create()
     },
     { key: ANIMAL_KEYS.COLOUR, header: "Colour" },
     { key: ANIMAL_KEYS.PATTERN, header: "Pattern" },
@@ -17,12 +25,12 @@ export const createStore = () => {
     {
       key: ANIMAL_KEYS.PRICE,
       header: "Price",
-      filter: RangeFilter.create(),
+      filter: RangeFilterModel.create(),
       sortable: true
     }
   ];
 
-  const store = PetStore.create({
+  const store = DataStore.create({
     columns
   });
   store.fetchRecords(petService.fetch);
