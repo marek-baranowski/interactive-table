@@ -36,7 +36,7 @@ export const ColumnHeader = ({
       <span>
         <i
           className={`fa fa-${icon} ${iconStyles}`}
-          onClick={() => sorting.setSorting(key)}
+          onClick={() => sorting.toggleColumnSorting(key)}
         />
       </span>
     );

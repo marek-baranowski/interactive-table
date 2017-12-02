@@ -28,9 +28,9 @@ export const Sorting = types
     order: types.maybe(types.string)
   })
   .actions(self => ({
-    setSorting: column => {
-      if (self.column !== column) {
-        self.column = column;
+    toggleColumnSorting: columnKey => {
+      if (self.column !== columnKey) {
+        self.column = columnKey;
         self.order = orderTypes[0];
         return;
       }
