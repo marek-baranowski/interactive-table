@@ -3,3 +3,8 @@ export const FILTER_TYPES = {
   MULTI_SELECT_FILTER: "MultiSelectFilter",
   RANGE_FILTER: "RangeFilter"
 };
+
+export const SORTING_ORDER_TYPES = {
+  ASCENDING: "asc",
+  DESCENDING: "desc"
+};

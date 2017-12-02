@@ -20,13 +20,14 @@ const columns = [
   },
   { key: keys.COLOUR, header: "Colour" },
   { key: keys.PATTERN, header: "Pattern" },
-  { key: keys.RATING, header: "Rating" },
+  { key: keys.RATING, header: "Rating", sortable: true },
   {
     key: keys.PRICE,
     header: "Price",
     filter: RangeFilter.create({
       selectedRange: getRange(data.map(({ price }) => price))
-    })
+    }),
+    sortable: true
   }
 ];
 
