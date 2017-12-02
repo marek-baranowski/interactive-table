@@ -11,12 +11,6 @@ const sortingIconsMapping = {
   none: "sort"
 };
 
-const filtersToComponentsMapping = {
-  [FILTER_TYPES.STRING_FILTER]: StringFilter,
-  [FILTER_TYPES.MULTI_SELECT_FILTER]: MultiSelectFilter,
-  [FILTER_TYPES.RANGE_FILTER]: RangeFilter
-};
-
 export const ColumnHeader = ({
   store,
   column: { key, header, filter, sortable }
@@ -65,7 +59,11 @@ export const ColumnHeader = ({
           toggle={filter.toggleVisibility}
         >
           <PopoverBody>
-            {filtersToComponentsMapping[filter.type](filter)}
+            {{
+              [FILTER_TYPES.STRING_FILTER]: StringFilter,
+              [FILTER_TYPES.MULTI_SELECT_FILTER]: MultiSelectFilter,
+              [FILTER_TYPES.RANGE_FILTER]: RangeFilter
+            }[filter.type](filter)}
           </PopoverBody>
         </Popover>
       </span>

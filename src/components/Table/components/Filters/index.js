@@ -1,6 +1,7 @@
 import React from "react";
 import { Input, Label } from "reactstrap";
 import { Range, createSliderWithTooltip } from "rc-slider";
+import { sliderStyles, sliderTooltipStyles } from "./styles";
 
 const RangeWithTooltip = createSliderWithTooltip(Range);
 
@@ -41,11 +42,12 @@ export const RangeFilter = ({
   return (
     <RangeWithTooltip
       {...{
-        style: { width: 100 },
+        className: `${sliderStyles}`,
         min,
         max,
         value,
-        onChange: setSelectedRange
+        onChange: setSelectedRange,
+        tipProps: { overlayClassName: `${sliderTooltipStyles}` }
       }}
     />
   );

@@ -27,11 +27,12 @@ export const Table = ({ store }) => {
 
   return (
     <BootstrapTable {...tableProps}>
-      {columns.map(column => (
-        <TableHeaderColumn dataField={column.key} key={column.key}>
-          <ColumnHeader column={column} store={store} />
-        </TableHeaderColumn>
-      ))}
+      {filteredSortedRecords.length > 0 &&
+        columns.map(column => (
+          <TableHeaderColumn dataField={column.key} key={column.key}>
+            <ColumnHeader {...{ column, store }} />
+          </TableHeaderColumn>
+        ))}
     </BootstrapTable>
   );
 };
