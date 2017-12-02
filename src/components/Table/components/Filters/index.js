@@ -14,7 +14,7 @@ export const StringFilter = filter => (
 );
 
 export const MultiSelectFilter = filter => (
-  <div>
+  <div className="d-flex flex-column">
     {filter.uniqueColumnValues.map((value, i) => (
       <Label check key={i}>
         <Input
