@@ -4,14 +4,18 @@ import {
   Input,
   Label,
   Popover,
-  PopoverBody,
-  Button
+  PopoverBody
 } from "reactstrap";
+import { css } from "glamor";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import { Range, createSliderWithTooltip } from "rc-slider";
 import { FILTER_TYPES } from "../../settings";
 
 const RangeWithTooltip = createSliderWithTooltip(Range);
+
+const filterIconStyles = css({
+  cursor: "pointer"
+});
 
 const filterTypesToComponentsMapping = {
   [FILTER_TYPES.STRING_FILTER]: filter => (
@@ -56,27 +60,27 @@ export default inject("store")(
         <BootstrapTable data={filteredAnimals} striped hover>
           {columns.map(({ key, header, filter }, i) => (
             <TableHeaderColumn isKey={i === 0} dataField={key} key={key}>
-              {header}
-              {filter && (
-                <span>
-                  <Button id={key} onClick={filter.toggleVisibility}>
-                    F
-                  </Button>
-                  <Popover
-                    placement="bottom"
-                    isOpen={filter.isVisible}
-                    target={key}
-                    toggle={filter.toggleVisibility}
-                  >
-                    <PopoverBody>
-                      {filterTypesToComponentsMapping[filter.type](
-                        filter,
-                        store
-                      )}
-                    </PopoverBody>
-                  </Popover>
-                </span>
-              )}
+              <div className="d-flex justify-content-between">
+                {header}
+                {filter && (
+                  <span>
+                    <i className={`fa fa-filter ${filterIconStyles}`} id={key} onClick={filter.toggleVisibility} />
+                    <Popover
+                      placement="bottom"
+                      isOpen={filter.isVisible}
+                      target={key}
+                      toggle={filter.toggleVisibility}
+                    >
+                      <PopoverBody>
+                        {filterTypesToComponentsMapping[filter.type](
+                          filter,
+                          store
+                        )}
+                      </PopoverBody>
+                    </Popover>
+                  </span>
+                )}
+              </div>
             </TableHeaderColumn>
           ))}
         </BootstrapTable>

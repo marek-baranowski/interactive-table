@@ -1,3 +1,4 @@
-@import '~bootstrap/dist/css/bootstrap.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
-@import '~rc-slider/assets/index.css';
+@import '~rc-slider/dist/rc-slider.min.css';
+@import '~font-awesome/css/font-awesome.min.css';
