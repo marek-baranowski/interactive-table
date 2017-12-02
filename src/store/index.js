@@ -12,23 +12,26 @@ const keys = {
 };
 
 const columns = [
-  { key: keys.NAME, header: "Name" },
-  { key: keys.ANIMAL, header: "Animal" },
+  { key: keys.NAME, header: "Name", filter: StringFilter.create() },
+  {
+    key: keys.ANIMAL,
+    header: "Animal",
+    filter: MultiSelectFilter.create({ selectedValues: [] })
+  },
   { key: keys.COLOUR, header: "Colour" },
   { key: keys.PATTERN, header: "Pattern" },
   { key: keys.RATING, header: "Rating" },
-  { key: keys.PRICE, header: "Price" }
+  {
+    key: keys.PRICE,
+    header: "Price",
+    filter: RangeFilter.create({
+      selectedRange: getRange(data.map(({ price }) => price))
+    })
+  }
 ];
 
 export const createStore = () =>
   PetStore.create({
     animals: data,
-    columns,
-    filters: [
-      StringFilter.create(),
-      MultiSelectFilter.create({ selectedValues: [] }),
-      RangeFilter.create({
-        selectedRange: getRange(data.map(({ price }) => price))
-      })
-    ]
+    columns
   });

@@ -1,30 +1,43 @@
-import { types } from "mobx-state-tree";
+import { types, getType } from "mobx-state-tree";
+import { FILTER_TYPES } from "../settings";
 
-/* all filters should have 'compare' method */
-export const createModelFromBase = (filterModel, comparator) =>
-  types.model(filterModel).views(self => ({
-    compare: record => comparator(record, self)
+/* base properties and methods for all filters */
+export const createModelFromBase = comparator =>
+  types
+    .model({
+      isVisible: false
+    })
+    .views(self => ({
+      get type() {
+        return getType(self).name;
+      },
+      compare: record => comparator(record, self)
+    }))
+    .actions(self => ({
+      toggleVisibility: () => (self.isVisible = !self.isVisible)
+    }));
+
+export const StringFilter = createModelFromBase((animal, { value }) =>
+  animal.name.toUpperCase().startsWith(value.toUpperCase())
+)
+  .named(FILTER_TYPES.STRING_FILTER)
+  .props({
+    value: ""
+  })
+  .actions(self => ({
+    setValue: value => (self.value = value)
   }));
 
-export const StringFilter = createModelFromBase(
-  {
-    value: ""
-  },
-  (animal, { value }) =>
-    animal.name.toUpperCase().startsWith(value.toUpperCase())
-).actions(self => ({
-  setValue: value => (self.value = value)
-}));
-
 export const MultiSelectFilter = createModelFromBase(
-  {
-    selectedValues: types.array(types.string)
-  },
   (animal, { selectedValues, isSelected }) =>
     selectedValues.length > 0 ? isSelected(animal.animal) : true
 )
-  .views(self => ({
-    isSelected: value => self.selectedValues.includes(value)
+  .named(FILTER_TYPES.MULTI_SELECT_FILTER)
+  .props({
+    selectedValues: types.array(types.string)
+  })
+  .views(({ selectedValues }) => ({
+    isSelected: value => selectedValues.includes(value)
   }))
   .actions(self => ({
     toggleValue: value =>
@@ -34,11 +47,13 @@ export const MultiSelectFilter = createModelFromBase(
   }));
 
 export const RangeFilter = createModelFromBase(
-  {
-    selectedRange: types.array(types.number)
-  },
   (animal, { selectedRange }) =>
     animal.price >= selectedRange[0] && animal.price <= selectedRange[1]
-).actions(self => ({
-  setSelectedRange: range => (self.selectedRange = range)
-}));
+)
+  .named(FILTER_TYPES.RANGE_FILTER)
+  .props({
+    selectedRange: types.array(types.number)
+  })
+  .actions(self => ({
+    setSelectedRange: range => (self.selectedRange = range)
+  }));

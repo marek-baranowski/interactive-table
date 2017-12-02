@@ -15,18 +15,19 @@ export const Animal = types.model({
 
 export const Column = types.model({
   key: types.string,
-  header: types.string
+  header: types.string,
+  filter: types.maybe(types.union(StringFilter, MultiSelectFilter, RangeFilter))
 });
 
 export const PetStore = types
   .model({
     animals: types.array(Animal),
-    columns: types.array(Column),
-    filters: types.array(
-      types.union(StringFilter, MultiSelectFilter, RangeFilter)
-    )
+    columns: types.array(Column)
   })
   .views(self => ({
+    get filters() {
+      return self.columns.filter(({filter}) => !!filter).map(({filter}) => filter);
+    },
     get filteredAnimals() {
       return self.animals.filter(animal =>
         self.filters
