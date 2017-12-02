@@ -3,7 +3,6 @@ import orderBy from "lodash/orderBy";
 import { StringFilter, MultiSelectFilter, RangeFilter } from "./Filters";
 import { SORTING_ORDER_TYPES } from "../settings";
 
-
 export const Animal = types.model({
   name: types.string,
   animal: types.string,
@@ -49,18 +48,20 @@ export const Sorting = types
 
 export const PetStore = types
   .model({
-    animals: types.array(Animal),
+    records: types.array(Animal),
     columns: types.array(Column),
     sorting: types.optional(Sorting, {})
   })
   .views(self => ({
-    get filterableColumns() {
+    get columnsWithFilter() {
       return self.columns.filter(({ filter }) => !!filter);
     },
-    get filteredSortedAnimals() {
-      const { animals, filterableColumns, sorting } = self;
-      const filtered = animals.filter(animal =>
-        filterableColumns.map(({ key, filter: { compare } }) => compare(animal[key])).every(result => result)
+    get filteredSortedRecords() {
+      const { records, columnsWithFilter, sorting } = self;
+      const filtered = records.filter(record =>
+        columnsWithFilter
+          .map(({ filter }) => filter.compare(record))
+          .every(result => result)
       );
 
       return sorting.column

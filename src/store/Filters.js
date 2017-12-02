@@ -2,7 +2,6 @@ import { types, getType, getParent, getRoot } from "mobx-state-tree";
 import { isEmpty, uniq } from "lodash";
 import { FILTER_TYPES } from "../settings";
 
-
 /* base properties and methods for all filters */
 export const createModelFromBase = comparator =>
   types
@@ -22,8 +21,9 @@ export const createModelFromBase = comparator =>
       toggleVisibility: () => (self.isVisible = !self.isVisible)
     }));
 
-export const StringFilter = createModelFromBase((record, { value }) =>
-  record.toUpperCase().startsWith(value.toUpperCase())
+export const StringFilter = createModelFromBase(
+  (record, { columnKey, value }) =>
+    record[columnKey].toUpperCase().startsWith(value.toUpperCase())
 )
   .named(FILTER_TYPES.STRING_FILTER)
   .props({
@@ -34,8 +34,8 @@ export const StringFilter = createModelFromBase((record, { value }) =>
   }));
 
 export const MultiSelectFilter = createModelFromBase(
-  (record, { selectedValues, isSelected }) =>
-    selectedValues.length > 0 ? isSelected(record) : true
+  (record, { columnKey, selectedValues, isSelected }) =>
+    selectedValues.length > 0 ? isSelected(record[columnKey]) : true
 )
   .named(FILTER_TYPES.MULTI_SELECT_FILTER)
   .props({
@@ -43,9 +43,9 @@ export const MultiSelectFilter = createModelFromBase(
   })
   .views(self => ({
     get uniqueColumnValues() {
-      const { animals } = getRoot(self);
+      const { records } = getRoot(self);
 
-      return uniq(animals.map(animal => animal[self.columnKey]));
+      return uniq(records.map(record => record[self.columnKey]));
     },
     isSelected: value => self.selectedValues.includes(value)
   }))
@@ -57,8 +57,8 @@ export const MultiSelectFilter = createModelFromBase(
   }));
 
 export const RangeFilter = createModelFromBase(
-  (record, { selectedRange: [min, max] }) =>
-    record >= min && record <= max
+  (record, { columnKey, selectedRange: [min, max] }) =>
+    record[columnKey] >= min && record[columnKey] <= max
 )
   .named(FILTER_TYPES.RANGE_FILTER)
   .props({
@@ -66,8 +66,8 @@ export const RangeFilter = createModelFromBase(
   })
   .views(self => ({
     get columnMinMaxRange() {
-      const { animals } = getRoot(self);
-      const values = animals.map(animal => animal[self.columnKey]);
+      const { records } = getRoot(self);
+      const values = records.map(record => record[self.columnKey]);
 
       return [Math.min(...values), Math.max(...values)];
     }

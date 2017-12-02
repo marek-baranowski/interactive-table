@@ -31,6 +31,6 @@ const columns = [
 
 export const createStore = () =>
   PetStore.create({
-    animals: data,
+    records: data,
     columns
   });
