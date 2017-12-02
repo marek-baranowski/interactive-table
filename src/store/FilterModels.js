@@ -14,9 +14,9 @@ const BaseFilterModel = types
       return getParent(self).key;
     },
     get isActive() {
-      return self.checkActive();
+      return self.isPopulated(self.getFilterData());
     },
-    checkActive: () => !isEmpty(self.getFilterData()),
+    isPopulated: filterData => !isEmpty(filterData),
     validateRecord: record => self.validator(record),
     getFilterData: () => null,
     validator: () => false
@@ -90,7 +90,7 @@ export const RangeFilterModel = types
         },
         get isActive() {
           return (
-            self.checkActive() &&
+            self.isPopulated(self.selectedRange) &&
             self.columnMaxRange.join() !== self.selectedRange.join()
           );
         },
