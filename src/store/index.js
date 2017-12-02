@@ -30,10 +30,5 @@ export const createStore = () => {
     }
   ];
 
-  const store = DataStore.create({
-    columns
-  });
-  store.fetchRecords(petService.fetch);
-
-  return store;
+  return DataStore.create({ columns }, { service: petService.fetch });
 };

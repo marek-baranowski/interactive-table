@@ -14,7 +14,7 @@ export const Table = ({ store }) => {
   if (requestStatus.isRejected()) {
     return (
       <Alert color="danger">
-        Unexpected error: {requestStatus.errorMessage}
+        Unexpected error: "{requestStatus.errorMessage}"
       </Alert>
     );
   }

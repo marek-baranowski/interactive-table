@@ -1,4 +1,4 @@
-import { types, flow } from "mobx-state-tree";
+import { types, flow, getEnv } from "mobx-state-tree";
 import orderBy from "lodash/orderBy";
 import {
   StringFilterModel,
@@ -50,5 +50,6 @@ export default types
       } catch (error) {
         self.requestStatus.setRejected(error);
       }
-    })
+    }),
+    afterCreate: () => self.fetchRecords(getEnv(self).service)
   }));
