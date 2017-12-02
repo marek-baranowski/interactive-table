@@ -13,7 +13,13 @@ const BaseFilterModel = types
     get columnKey() {
       return getParent(self).key;
     },
-    validateRecord: record => self.validator(record)
+    get isActive() {
+      return self.checkActive();
+    },
+    checkActive: () => !isEmpty(self.getFilterData()),
+    validateRecord: record => self.validator(record),
+    getFilterData: () => null,
+    validator: () => false
   }))
   .actions(self => ({
     toggleVisibility: () => (self.isVisible = !self.isVisible)
@@ -27,6 +33,7 @@ export const StringFilterModel = types
         value: ""
       })
       .views(self => ({
+        getFilterData: () => self.value,
         validator: record =>
           record[self.columnKey]
             .toUpperCase()
@@ -52,6 +59,7 @@ export const MultiSelectFilterModel = types
           return uniq(records.map(record => record[self.columnKey]));
         },
         isSelected: value => self.selectedValues.includes(value),
+        getFilterData: () => self.selectedValues,
         validator: record =>
           self.selectedValues.length > 0
             ? self.isSelected(record[self.columnKey])
@@ -80,6 +88,13 @@ export const RangeFilterModel = types
 
           return [Math.min(...columnData), Math.max(...columnData)];
         },
+        get isActive() {
+          return (
+            self.checkActive() &&
+            self.columnMaxRange.join() !== self.selectedRange.join()
+          );
+        },
+        getFilterData: () => self.selectedRange,
         validator: record => {
           if (isEmpty(self.selectedRange)) {
             return true;

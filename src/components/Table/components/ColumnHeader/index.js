@@ -47,13 +47,17 @@ export const ColumnHeader = ({
       return null;
     }
 
+    const iconProps = {
+      id: key,
+      onClick: filter.toggleVisibility,
+      className: `fa fa-filter ${iconStyles}${filter.isActive
+        ? " text-primary"
+        : ""}`
+    };
+
     return (
       <span>
-        <i
-          className={`fa fa-filter ${iconStyles}`}
-          id={key}
-          onClick={filter.toggleVisibility}
-        />
+        <i {...iconProps} />
         <Popover
           placement="bottom"
           isOpen={filter.isVisible}
