@@ -32,7 +32,7 @@ export default types
       const { records, columnsWithFilter, sorting } = self;
       const filtered = records.filter(record =>
         columnsWithFilter
-          .map(({ filter }) => filter.compare(record))
+          .map(({ filter }) => filter.validateRecord(record))
           .every(result => result)
       );
 
