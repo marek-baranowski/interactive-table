@@ -1,6 +1,6 @@
 import { StringFilter, MultiSelectFilter, RangeFilter } from "./Filters";
 import { PetStore } from "./PetStore";
-import data from "./data";
+import { fetchData } from "./data";
 import { ANIMAL_KEYS } from "../settings";
 
 export const createStore = () => {
@@ -22,8 +22,10 @@ export const createStore = () => {
     }
   ];
 
-  return PetStore.create({
-    records: data,
+  const store = PetStore.create({
     columns
   });
+  store.fetchRecords(fetchData);
+
+  return store
 };

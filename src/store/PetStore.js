@@ -1,4 +1,4 @@
-import { types } from "mobx-state-tree";
+import { types, flow } from "mobx-state-tree";
 import orderBy from "lodash/orderBy";
 import { StringFilter, MultiSelectFilter, RangeFilter } from "./Filters";
 import { SORTING_ORDER_TYPES } from "../settings";
@@ -48,13 +48,13 @@ export const Sorting = types
 
 export const PetStore = types
   .model({
-    records: types.array(Animal),
-    columns: types.array(Column),
+    records: types.optional(types.array(Animal), []),
+    columns: types.optional(types.array(Column), []),
     sorting: types.optional(Sorting, {})
   })
   .views(self => ({
     get columnsWithFilter() {
-      return self.columns.filter(({ filter }) => !!filter);
+      return self.columns.filter(column => !!column.filter);
     },
     get filteredSortedRecords() {
       const { records, columnsWithFilter, sorting } = self;
@@ -68,4 +68,13 @@ export const PetStore = types
         ? orderBy(filtered, sorting.column, sorting.order)
         : filtered;
     }
+  }))
+  .actions(self => ({
+    fetchRecords: flow(function*(service) {
+      try {
+        self.records = yield service();
+      } catch (err) {
+        console.error("Failed to fetch records ", err);
+      }
+    })
   }));

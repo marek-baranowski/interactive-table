@@ -1,4 +1,4 @@
-export default [
+export const data = [
   {
     name: "Caroline",
     animal: "Turtle",
@@ -48,3 +48,11 @@ export default [
     price: 439
   }
 ];
+
+export const fetchData = () => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(data);
+    }, 1000);
+  });
+};

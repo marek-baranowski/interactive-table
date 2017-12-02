@@ -1,6 +1,7 @@
 import React from "react";
 import { Input, Label } from "reactstrap";
 import { Range, createSliderWithTooltip } from "rc-slider";
+import isEmpty from "lodash/isEmpty";
 
 const RangeWithTooltip = createSliderWithTooltip(Range);
 
@@ -30,6 +31,7 @@ export const MultiSelectFilter = filter => (
 
 export const RangeFilter = filter => {
   const [min, max] = filter.columnMinMaxRange;
+  const value = isEmpty(filter.selectedRange) ? filter.columnMinMaxRange : filter.selectedRange.peek();
 
   return (
     <RangeWithTooltip
@@ -37,7 +39,7 @@ export const RangeFilter = filter => {
         style: { width: 100 },
         min,
         max,
-        value: filter.selectedRange.peek(),
+        value,
         onChange: filter.setSelectedRange
       }}
     />

@@ -57,8 +57,16 @@ export const MultiSelectFilter = createModelFromBase(
   }));
 
 export const RangeFilter = createModelFromBase(
-  (record, { columnKey, selectedRange: [min, max] }) =>
-    record[columnKey] >= min && record[columnKey] <= max
+  (record, { columnKey, selectedRange }) => {
+    if (isEmpty(selectedRange)) {
+      return true;
+    }
+
+    return (
+      record[columnKey] >= selectedRange[0] &&
+      record[columnKey] <= selectedRange[1]
+    );
+  }
 )
   .named(FILTER_TYPES.RANGE_FILTER)
   .props({
@@ -73,10 +81,5 @@ export const RangeFilter = createModelFromBase(
     }
   }))
   .actions(self => ({
-    setSelectedRange: range => (self.selectedRange = range),
-    afterAttach: () => {
-      if (isEmpty(self.selectedRange)) {
-        self.setSelectedRange(self.columnMinMaxRange);
-      }
-    }
+    setSelectedRange: range => (self.selectedRange = range)
   }));
