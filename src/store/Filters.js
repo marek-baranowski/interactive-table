@@ -17,8 +17,8 @@ export const createModelFromBase = comparator =>
       toggleVisibility: () => (self.isVisible = !self.isVisible)
     }));
 
-export const StringFilter = createModelFromBase((animal, { value }) =>
-  animal.name.toUpperCase().startsWith(value.toUpperCase())
+export const StringFilter = createModelFromBase((record, { value }) =>
+  record.toUpperCase().startsWith(value.toUpperCase())
 )
   .named(FILTER_TYPES.STRING_FILTER)
   .props({
@@ -29,8 +29,8 @@ export const StringFilter = createModelFromBase((animal, { value }) =>
   }));
 
 export const MultiSelectFilter = createModelFromBase(
-  (animal, { selectedValues, isSelected }) =>
-    selectedValues.length > 0 ? isSelected(animal.animal) : true
+  (record, { selectedValues, isSelected }) =>
+    selectedValues.length > 0 ? isSelected(record) : true
 )
   .named(FILTER_TYPES.MULTI_SELECT_FILTER)
   .props({
@@ -47,8 +47,8 @@ export const MultiSelectFilter = createModelFromBase(
   }));
 
 export const RangeFilter = createModelFromBase(
-  (animal, { selectedRange }) =>
-    animal.price >= selectedRange[0] && animal.price <= selectedRange[1]
+  (record, { selectedRange }) =>
+    record >= selectedRange[0] && record <= selectedRange[1]
 )
   .named(FILTER_TYPES.RANGE_FILTER)
   .props({

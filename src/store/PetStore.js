@@ -55,27 +55,25 @@ export const PetStore = types
     sorting: types.optional(Sorting, {})
   })
   .views(self => ({
-    get filters() {
-      return self.columns
-        .filter(({ filter }) => !!filter)
-        .map(({ filter }) => filter);
+    get filterableColumns() {
+      return self.columns.filter(({ filter }) => !!filter);
     },
-    get filteredAnimals() {
-      const { animals, filters, sorting } = self;
+    get filteredSortedAnimals() {
+      const { animals, filterableColumns, sorting } = self;
       const filtered = animals.filter(animal =>
-        filters.map(({ compare }) => compare(animal)).every(result => result)
+        filterableColumns.map(({ key, filter: { compare } }) => compare(animal[key])).every(result => result)
       );
 
       return sorting.column
         ? orderBy(filtered, sorting.column, sorting.order)
         : filtered;
     },
-    get uniqueValues() {
-      return uniq(self.animals.map(({ animal }) => animal));
+    getUniqueColumnValues(columnKey) {
+      return uniq(self.animals.map(animal => animal[columnKey]));
     },
-    get pricesRange() {
-      const prices = self.animals.map(({ price }) => price);
+    getColumnMinMaxRange(columnKey) {
+      const values = self.animals.map(animal => animal[columnKey]);
 
-      return getRange(prices);
+      return getRange(values);
     }
   }));

@@ -4,16 +4,19 @@ import { Range, createSliderWithTooltip } from "rc-slider";
 
 const RangeWithTooltip = createSliderWithTooltip(Range);
 
-export const StringFilter = filter => (
+export const StringFilter = ({ filter }) => (
   <Input
     value={filter.value}
     onChange={({ target }) => filter.setValue(target.value)}
   />
 );
 
-export const MultiSelectFilter = (filter, { uniqueValues }) => (
+export const MultiSelectFilter = (
+  { key, filter },
+  { getUniqueColumnValues }
+) => (
   <div>
-    {uniqueValues.map((value, i) => (
+    {getUniqueColumnValues(key).map((value, i) => (
       <Label check key={i}>
         <Input
           type="checkbox"
@@ -26,14 +29,18 @@ export const MultiSelectFilter = (filter, { uniqueValues }) => (
   </div>
 );
 
-export const RangeFilter = (filter, { pricesRange: [min, max] }) => (
-  <RangeWithTooltip
-    {...{
-      style: { width: 100 },
-      min,
-      max,
-      value: filter.selectedRange.peek(),
-      onChange: filter.setSelectedRange
-    }}
-  />
-);
+export const RangeFilter = ({ key, filter }, { getColumnMinMaxRange }) => {
+  const [min, max] = getColumnMinMaxRange(key);
+
+  return (
+    <RangeWithTooltip
+      {...{
+        style: { width: 100 },
+        min,
+        max,
+        value: filter.selectedRange.peek(),
+        onChange: filter.setSelectedRange
+      }}
+    />
+  );
+};
