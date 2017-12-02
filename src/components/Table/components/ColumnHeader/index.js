@@ -3,7 +3,7 @@ import { Popover, PopoverBody } from "reactstrap";
 import { observer } from "mobx-react";
 import { iconStyles, headerTitleStyles } from "./styles";
 import { StringFilter, MultiSelectFilter, RangeFilter } from "../Filters";
-import { SORTING_ORDER_TYPES, FILTER_TYPES } from "settings";
+import { SORTING_ORDER_TYPES, FILTER_TYPES } from "config";
 
 const sortingIconsMapping = {
   [SORTING_ORDER_TYPES.ASCENDING]: "sort-asc",

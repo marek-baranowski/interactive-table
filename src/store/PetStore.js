@@ -1,7 +1,7 @@
 import { types, flow } from "mobx-state-tree";
 import orderBy from "lodash/orderBy";
 import { StringFilter, MultiSelectFilter, RangeFilter } from "./Filters";
-import { SORTING_ORDER_TYPES } from "../settings";
+import { SORTING_ORDER_TYPES, ASYNC_STATES } from "../config";
 
 export const Animal = types.model({
   name: types.string,
@@ -46,11 +46,39 @@ export const Sorting = types
     }
   }));
 
+export const AsyncStatus = types
+  .model({
+    status: types.optional(
+      types.enumeration(Object.values(ASYNC_STATES)),
+      ASYNC_STATES.NONE
+    ),
+    errorMessage: types.maybe(types.string)
+  })
+  .views(self => ({
+    isNone: () => self.status === ASYNC_STATES.PENDING,
+    isPending: () => self.status === ASYNC_STATES.PENDING,
+    isResolved: () => self.status === ASYNC_STATES.RESOLVED,
+    isRejected: () => self.status === ASYNC_STATES.REJECTED
+  }))
+  .actions(self => ({
+    setPending: () => (self.status = ASYNC_STATES.PENDING),
+    setResolved: () => (self.status = ASYNC_STATES.RESOLVED),
+    setRejected: errorMessage => {
+      self.status = ASYNC_STATES.REJECTED;
+      self.errorMessage = errorMessage;
+    },
+    reset: () => {
+      self.status = ASYNC_STATES.NONE;
+      self.errorMessage = null;
+    }
+  }));
+
 export const PetStore = types
   .model({
     records: types.optional(types.array(Animal), []),
     columns: types.optional(types.array(Column), []),
-    sorting: types.optional(Sorting, {})
+    sorting: types.optional(Sorting, {}),
+    requestStatus: types.optional(AsyncStatus, AsyncStatus.create())
   })
   .views(self => ({
     get columnsWithFilter() {
@@ -71,10 +99,12 @@ export const PetStore = types
   }))
   .actions(self => ({
     fetchRecords: flow(function*(service) {
+      self.requestStatus.setPending();
       try {
         self.records = yield service();
-      } catch (err) {
-        console.error("Failed to fetch records ", err);
+        self.requestStatus.setResolved();
+      } catch (error) {
+        self.requestStatus.setRejected(error);
       }
     })
   }));

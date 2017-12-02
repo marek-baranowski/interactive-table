@@ -1,6 +1,6 @@
 import { types, getType, getParent, getRoot } from "mobx-state-tree";
 import { isEmpty, uniq } from "lodash";
-import { FILTER_TYPES } from "../settings";
+import { FILTER_TYPES } from "../config";
 
 /* base properties and methods for all filters */
 export const createModelFromBase = comparator =>
@@ -73,7 +73,7 @@ export const RangeFilter = createModelFromBase(
     selectedRange: types.optional(types.array(types.number), [])
   })
   .views(self => ({
-    get columnMinMaxRange() {
+    get columnMaxRange() {
       const { records } = getRoot(self);
       const values = records.map(record => record[self.columnKey]);
 

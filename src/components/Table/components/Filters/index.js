@@ -30,8 +30,8 @@ export const MultiSelectFilter = filter => (
 );
 
 export const RangeFilter = filter => {
-  const [min, max] = filter.columnMinMaxRange;
-  const value = isEmpty(filter.selectedRange) ? filter.columnMinMaxRange : filter.selectedRange.peek();
+  const [min, max] = filter.columnMaxRange;
+  const value = isEmpty(filter.selectedRange) ? filter.columnMaxRange : filter.selectedRange.peek();
 
   return (
     <RangeWithTooltip
