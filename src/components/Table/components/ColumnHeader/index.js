@@ -11,72 +11,66 @@ const sortingIconsMapping = {
   none: "sort"
 };
 
-export const ColumnHeader = ({
-  store,
-  column: { key, header, filter, sortable }
-}) => {
-  const renderSortingButton = () => {
-    if (!sortable) {
-      return null;
-    }
+const SortingButton = observer(({ column: { key, sortable }, sorting }) => {
+  if (!sortable) {
+    return null;
+  }
 
-    const { sorting } = store;
-    const icon =
-      sortingIconsMapping[
-        sorting.column === key && sorting.order ? sorting.order : "none"
-      ];
+  const icon =
+    sortingIconsMapping[
+      sorting.column === key && sorting.order ? sorting.order : "none"
+    ];
 
-    return (
-      <span>
-        <i
-          className={`fa fa-${icon} ${iconStyles}`}
-          onClick={() => sorting.toggleColumnSorting(key)}
-        />
-      </span>
-    );
-  };
+  return (
+    <span>
+      <i
+        className={`fa fa-${icon} ${iconStyles}`}
+        onClick={() => sorting.toggleColumnSorting(key)}
+      />
+    </span>
+  );
+});
 
-  const renderFilterButton = () => {
-    if (!filter) {
-      return null;
-    }
+const FilterButton = observer(({ column: { key, filter } }) => {
+  if (!filter) {
+    return null;
+  }
 
-    const iconProps = {
-      id: key,
-      onClick: filter.toggleVisibility,
-      className: `fa fa-filter ${iconStyles}${filter.isActive
-        ? " text-primary"
-        : ""}`
-    };
-
-    return (
-      <span>
-        <i {...iconProps} />
-        <Popover
-          placement="bottom"
-          isOpen={filter.isVisible}
-          target={key}
-          toggle={filter.toggleVisibility}
-        >
-          <PopoverBody>
-            {{
-              [FILTER_TYPES.STRING_FILTER]: StringFilter,
-              [FILTER_TYPES.MULTI_SELECT_FILTER]: MultiSelectFilter,
-              [FILTER_TYPES.RANGE_FILTER]: RangeFilter
-            }[filter.type](filter)}
-          </PopoverBody>
-        </Popover>
-      </span>
-    );
+  const iconProps = {
+    id: key,
+    onClick: filter.toggleVisibility,
+    className: `fa fa-filter ${iconStyles}${filter.isActive
+      ? " text-primary"
+      : ""}`
   };
 
   return (
-    <div className="d-flex">
-      {renderSortingButton()}
-      <span {...headerTitleStyles}>{header}</span>
-      {renderFilterButton()}
-    </div>
+    <span>
+      <i {...iconProps} />
+      <Popover
+        placement="bottom"
+        isOpen={filter.isVisible}
+        target={key}
+        toggle={filter.toggleVisibility}
+      >
+        <PopoverBody>
+          {{
+            [FILTER_TYPES.STRING_FILTER]: StringFilter,
+            [FILTER_TYPES.MULTI_SELECT_FILTER]: MultiSelectFilter,
+            [FILTER_TYPES.RANGE_FILTER]: RangeFilter
+          }[filter.type](filter)}
+        </PopoverBody>
+      </Popover>
+    </span>
   );
-};
+});
+
+export const ColumnHeader = ({ store, column }) => (
+  <div className="d-flex">
+    <SortingButton {...{ column, sorting: store.sorting }} />
+    <span {...headerTitleStyles}>{column.header}</span>
+    <FilterButton {...{ column }} />
+  </div>
+);
 
 export default observer(ColumnHeader);
