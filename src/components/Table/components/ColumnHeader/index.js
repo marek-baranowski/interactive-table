@@ -2,7 +2,8 @@ import React from "react";
 import { Popover, PopoverBody } from "reactstrap";
 import { observer } from "mobx-react";
 import { iconStyles, headerTitleStyles } from "./styles";
-import { StringFilter, MultiSelectFilter } from "../Filters";
+import { StringFilter } from "../Filters";
+import MultiSelectFilter from "../Filters/MultiSelectFilter";
 import RangeFilter from "../Filters/RangeFilter";
 import { SORT_ORDER_TYPES, FILTER_TYPES } from "config";
 
@@ -57,8 +58,12 @@ const FilterButton = observer(({ column: { key, filter } }) => {
         <PopoverBody>
           {{
             [FILTER_TYPES.STRING_FILTER]: StringFilter,
-            [FILTER_TYPES.MULTI_SELECT_FILTER]: MultiSelectFilter,
-            [FILTER_TYPES.RANGE_FILTER]: filter => <RangeFilter {...{columnKey: key, filter}} />
+            [FILTER_TYPES.MULTI_SELECT_FILTER]: filter => (
+              <MultiSelectFilter {...{ columnKey: key, filter }} />
+            ),
+            [FILTER_TYPES.RANGE_FILTER]: filter => (
+              <RangeFilter {...{ columnKey: key, filter }} />
+            )
           }[filter.type](filter)}
         </PopoverBody>
       </Popover>
