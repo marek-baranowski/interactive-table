@@ -1,9 +1,5 @@
 import React from "react";
 import { Input, Label } from "reactstrap";
-import { Range, createSliderWithTooltip } from "rc-slider";
-import { sliderStyles, sliderTooltipStyles } from "./styles";
-
-const RangeWithTooltip = createSliderWithTooltip(Range);
 
 export const StringFilter = filter => (
   <Input
@@ -27,28 +23,3 @@ export const MultiSelectFilter = filter => (
     ))}
   </div>
 );
-
-export const RangeFilter = ({
-  selectedRange,
-  columnMaxRange,
-  setSelectedRange,
-  isPopulated
-}) => {
-  const [min, max] = columnMaxRange;
-  const value = isPopulated(selectedRange)
-    ? selectedRange.peek()
-    : columnMaxRange;
-
-  return (
-    <RangeWithTooltip
-      {...{
-        className: `${sliderStyles}`,
-        min,
-        max,
-        value,
-        onChange: setSelectedRange,
-        tipProps: { overlayClassName: `${sliderTooltipStyles}` }
-      }}
-    />
-  );
-};

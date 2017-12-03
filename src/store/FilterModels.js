@@ -20,7 +20,7 @@ const BaseFilterModel = types
     isPopulated: filterData => !isEmpty(filterData),
     validateValue: value => {
       if (!self.isActive) {
-        return true; // no need to filter records when Filter is not active
+        return true; // no need to validate when filter is not active
       }
 
       return self.predicate(value);
@@ -77,26 +77,24 @@ export const MultiSelectFilterModel = types
   )
   .named(FILTER_TYPES.MULTI_SELECT_FILTER);
 
+/* slice needed in case of Observable arrays */
+const rangesEqual = (range1, range2) =>
+  range1.slice().toString() === range2.slice().toString();
+
 export const RangeFilterModel = types
   .compose(
     BaseFilterModel,
     types
       .model({
+        maxRange: types.optional(types.array(types.number), []),
         selectedRange: types.optional(types.array(types.number), [])
       })
       .views(self => ({
-        get columnMaxRange() {
-          const { records } = getRoot(self);
-          const columnData = records.map(record => record[self.columnKey]);
-
-          return [Math.min(...columnData), Math.max(...columnData)];
-        },
         get isActive() {
-          const { selectedRange, columnMaxRange, isPopulated } = self;
+          const { selectedRange, maxRange, isPopulated } = self;
 
           return (
-            isPopulated(selectedRange) &&
-            columnMaxRange.toString() !== selectedRange.peek().toString()
+            isPopulated(selectedRange) && !rangesEqual(maxRange, selectedRange)
           );
         },
         getFilterData: () => self.selectedRange,
@@ -107,6 +105,14 @@ export const RangeFilterModel = types
         }
       }))
       .actions(self => ({
+        setMaxRange: range => {
+          if (rangesEqual(self.maxRange, range)) {
+            return;
+          }
+
+          self.maxRange = range;
+          self.setSelectedRange(range);
+        },
         setSelectedRange: range => (self.selectedRange = range)
       }))
   )
