@@ -5,7 +5,13 @@ import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import ColumnHeader from "./components/ColumnHeader";
 
 export const Table = ({ store }) => {
-  const { filteredSortedRecords, columns, requestStatus } = store;
+  const {
+    records,
+    filteredSortedRecords,
+    columns,
+    sorting,
+    requestStatus
+  } = store;
 
   if (requestStatus.isPending()) {
     return <span>Loading data...</span>;
@@ -27,10 +33,10 @@ export const Table = ({ store }) => {
 
   return (
     <BootstrapTable {...tableProps}>
-      {filteredSortedRecords.length > 0 &&
+      {records.length > 0 &&
         columns.map(column => (
           <TableHeaderColumn dataField={column.key} key={column.key}>
-            <ColumnHeader {...{ column, store }} />
+            <ColumnHeader {...{ column, sorting }} />
           </TableHeaderColumn>
         ))}
     </BootstrapTable>

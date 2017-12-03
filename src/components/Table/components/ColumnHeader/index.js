@@ -65,9 +65,9 @@ const FilterButton = observer(({ column: { key, filter } }) => {
   );
 });
 
-export const ColumnHeader = ({ store, column }) => (
+export const ColumnHeader = ({ column, sorting }) => (
   <div className="d-flex">
-    <SortingButton {...{ column, sorting: store.sorting }} />
+    <SortingButton {...{ column, sorting }} />
     <span {...headerTitleStyles}>{column.header}</span>
     <FilterButton {...{ column }} />
   </div>

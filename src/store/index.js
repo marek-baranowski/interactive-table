@@ -4,31 +4,31 @@ import {
   RangeFilterModel
 } from "./FilterModels";
 import DataStore from "./DataStore";
-import { petService } from "../service";
-import { ANIMAL_KEYS } from "../config";
+// import { petService } from "../service";
+import { fetchData } from "./data";
 
 export const createStore = () => {
   const columns = [
     {
-      key: ANIMAL_KEYS.NAME,
+      key: "name",
       header: "Name",
       filter: StringFilterModel.create()
     },
     {
-      key: ANIMAL_KEYS.ANIMAL,
+      key: "animal",
       header: "Animal",
       filter: MultiSelectFilterModel.create()
     },
-    { key: ANIMAL_KEYS.COLOUR, header: "Colour" },
-    { key: ANIMAL_KEYS.PATTERN, header: "Pattern" },
-    { key: ANIMAL_KEYS.RATING, header: "Rating", sortable: true },
+    { key: "colour", header: "Colour" },
+    { key: "pattern", header: "Pattern" },
+    { key: "rating", header: "Rating", sortable: true },
     {
-      key: ANIMAL_KEYS.PRICE,
+      key: "price",
       header: "Price",
       filter: RangeFilterModel.create(),
       sortable: true
     }
   ];
 
-  return DataStore.create({ columns }, { service: petService.fetch });
+  return DataStore.create({ columns }, { service: fetchData });
 };
