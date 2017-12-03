@@ -18,14 +18,14 @@ const BaseFilterModel = types
       return self.isPopulated(self.getFilterData());
     },
     isPopulated: filterData => !isEmpty(filterData),
-    validateRecord: record => {
+    validateValue: value => {
       if (!self.isActive) {
         return true; // no need to filter records when Filter is not active
       }
 
-      return self.validator(record);
+      return self.predicate(value);
     },
-    validator: () => true,
+    predicate: () => true,
     getFilterData: () => null
   }))
   .actions(self => ({
@@ -41,10 +41,8 @@ export const StringFilterModel = types
       })
       .views(self => ({
         getFilterData: () => self.value,
-        validator: record =>
-          record[self.columnKey]
-            .toUpperCase()
-            .startsWith(self.value.toUpperCase())
+        predicate: string =>
+          string.toUpperCase().startsWith(self.value.toUpperCase())
       }))
       .actions(self => ({
         setValue: value => (self.value = value)
@@ -67,10 +65,8 @@ export const MultiSelectFilterModel = types
         },
         isSelected: value => self.selectedValues.includes(value),
         getFilterData: () => self.selectedValues,
-        validator: record =>
-          self.selectedValues.length > 0
-            ? self.isSelected(record[self.columnKey])
-            : true
+        predicate: value =>
+          self.selectedValues.length > 0 ? self.isSelected(value) : true
       }))
       .actions(self => ({
         toggleValue: value =>
@@ -104,10 +100,10 @@ export const RangeFilterModel = types
           );
         },
         getFilterData: () => self.selectedRange,
-        validator: record => {
-          const { columnKey, selectedRange: [min, max] } = self;
+        predicate: value => {
+          const { selectedRange: [min, max] } = self;
 
-          return record[columnKey] >= min && record[columnKey] <= max;
+          return value >= min && value <= max;
         }
       }))
       .actions(self => ({
