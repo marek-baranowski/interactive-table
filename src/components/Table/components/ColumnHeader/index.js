@@ -2,9 +2,9 @@ import React from "react";
 import { Popover, PopoverBody } from "reactstrap";
 import { observer } from "mobx-react";
 import { iconStyles, headerTitleStyles } from "./styles";
-import { StringFilter } from "../Filters";
-import MultiSelectFilter from "../Filters/MultiSelectFilter";
-import RangeFilter from "../Filters/RangeFilter";
+import StringFilter from "../StringFilter";
+import MultiSelectFilter from "../MultiSelectFilter";
+import RangeFilter from "../RangeFilter";
 import { SORT_ORDER_TYPES, FILTER_TYPES } from "config";
 
 const sortingIconsMapping = {
@@ -45,26 +45,27 @@ const FilterButton = observer(({ column: { key, filter } }) => {
       ? " text-primary"
       : ""}`
   };
+  const filterProps = { columnKey: key, filter };
 
   return (
     <span>
       <i {...iconProps} />
       <Popover
-        placement="bottom"
+        placement="top"
         isOpen={filter.isVisible}
         target={key}
         toggle={filter.toggleVisibility}
       >
         <PopoverBody>
-          {{
-            [FILTER_TYPES.STRING_FILTER]: StringFilter,
-            [FILTER_TYPES.MULTI_SELECT_FILTER]: filter => (
-              <MultiSelectFilter {...{ columnKey: key, filter }} />
-            ),
-            [FILTER_TYPES.RANGE_FILTER]: filter => (
-              <RangeFilter {...{ columnKey: key, filter }} />
-            )
-          }[filter.type](filter)}
+          {
+            {
+              [FILTER_TYPES.STRING_FILTER]: <StringFilter {...filterProps} />,
+              [FILTER_TYPES.MULTI_SELECT_FILTER]: (
+                <MultiSelectFilter {...filterProps} />
+              ),
+              [FILTER_TYPES.RANGE_FILTER]: <RangeFilter {...filterProps} />
+            }[filter.type]
+          }
         </PopoverBody>
       </Popover>
     </span>

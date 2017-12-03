@@ -4,8 +4,7 @@ import {
   RangeFilterModel
 } from "./FilterModels";
 import DataStore from "./DataStore";
-// import { petService } from "../service";
-import { fetchData } from "./data";
+import { petService } from "../service";
 
 export const createStore = () => {
   const columns = [
@@ -30,5 +29,5 @@ export const createStore = () => {
     }
   ];
 
-  return DataStore.create({ columns }, { service: fetchData });
+  return DataStore.create({ columns }, { service: petService.fetch });
 };

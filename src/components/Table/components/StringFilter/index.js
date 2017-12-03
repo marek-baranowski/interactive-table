@@ -1,7 +1,7 @@
 import React from "react";
 import { Input } from "reactstrap";
 
-export const StringFilter = filter => (
+export default ({ filter }) => (
   <Input
     value={filter.value}
     onChange={({ target }) => filter.setValue(target.value)}

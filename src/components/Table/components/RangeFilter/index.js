@@ -3,14 +3,9 @@ import { reaction } from "mobx";
 import { inject, observer } from "mobx-react";
 import { Range, createSliderWithTooltip } from "rc-slider";
 import { sliderStyles, sliderTooltipStyles } from "./styles";
+import { findMaxRange } from "utils";
 
 const RangeWithTooltip = createSliderWithTooltip(Range);
-
-const findMaxRange = (records, columnKey) => {
-  const columnData = records.map(record => record[columnKey]);
-
-  return [Math.min(...columnData), Math.max(...columnData)];
-};
 
 class RangeFilter extends React.Component {
   componentWillMount() {
