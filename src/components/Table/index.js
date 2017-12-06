@@ -1,16 +1,11 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
 import { Alert } from "reactstrap";
-import ReactTable from 'react-table';
+import ReactTable from "react-table";
 import ColumnHeader from "./components/ColumnHeader";
 
 export const Table = ({ store }) => {
-  const {
-    filteredSortedRecords,
-    columns,
-    sorting,
-    requestStatus
-  } = store;
+  const { filteredSortedRecords, columns, sorting, requestStatus } = store;
 
   if (requestStatus.isPending()) {
     return <span>Loading data...</span>;
