@@ -3,10 +3,10 @@ import { headerTitleStyles } from "./styles";
 import SortingButton from "../SortingButton";
 import FilterButton from "../FilterButton";
 
-export default ({ column, sorting }) => (
+export default ({ column, sorting, showControls }) => (
   <div className="d-flex">
-    <SortingButton {...{ column, sorting }} />
+    {showControls && <SortingButton {...{ column, sorting }} />}
     <span {...headerTitleStyles}>{column.header}</span>
-    <FilterButton {...{ filter: column.filter }} />
+    {showControls && <FilterButton {...{ filter: column.filter }} />}
   </div>
 );

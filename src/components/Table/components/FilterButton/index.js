@@ -21,14 +21,11 @@ class FilterButton extends React.Component {
 
     const iconProps = {
       ref: this.handleRef,
-      onClick: filter.toggleVisibility,
-      className: `fa fa-filter ${iconStyles}${filter.isActive
-        ? " text-primary"
-        : ""}`
+      className: `fa fa-filter ${filter.isActive ? " text-primary" : ""}`
     };
 
     return (
-      <span>
+      <span className={iconStyles} onClick={filter.toggleVisibility}>
         <i {...iconProps} />
         <Popover
           placement="top"

@@ -10,10 +10,18 @@ export default types
     errorMessage: types.maybe(types.string)
   })
   .views(self => ({
-    isNone: () => self.status === ASYNC_STATES.PENDING,
-    isPending: () => self.status === ASYNC_STATES.PENDING,
-    isResolved: () => self.status === ASYNC_STATES.RESOLVED,
-    isRejected: () => self.status === ASYNC_STATES.REJECTED
+    get isNone() {
+      return self.status === ASYNC_STATES.PENDING;
+    },
+    get isPending() {
+      return self.status === ASYNC_STATES.PENDING;
+    },
+    get isResolved() {
+      return self.status === ASYNC_STATES.RESOLVED;
+    },
+    get isRejected() {
+      return self.status === ASYNC_STATES.REJECTED;
+    }
   }))
   .actions(self => ({
     setPending: () => (self.status = ASYNC_STATES.PENDING),
