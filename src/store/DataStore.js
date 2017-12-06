@@ -7,12 +7,21 @@ import {
 } from "./FilterModels";
 import SortingModel from "./SortingModel";
 import AsyncStatusModel from "./AsyncStatusModel";
+import { FILTER_TYPES } from "../config";
 
 const ColumnModel = types.model("ColumnModel", {
   key: types.string,
   header: types.string,
   filter: types.maybe(
-    types.union(StringFilterModel, MultiSelectFilterModel, RangeFilterModel)
+    types.union(snapshot => {
+      return !snapshot
+        ? types.null
+        : {
+            [FILTER_TYPES.STRING_FILTER]: StringFilterModel,
+            [FILTER_TYPES.MULTI_SELECT_FILTER]: MultiSelectFilterModel,
+            [FILTER_TYPES.RANGE_FILTER]: RangeFilterModel
+          }[snapshot.type];
+    })
   ),
   sortable: types.maybe(types.boolean)
 });
