@@ -20,11 +20,11 @@ const SortingButton = ({ column: { key, sortable }, sorting }) => {
     ];
 
   return (
-    <span>
-      <i
-        className={`fa fa-${icon} ${iconStyles}`}
-        onClick={() => sorting.toggleColumnSorting(key)}
-      />
+    <span
+      className={`${iconStyles}`}
+      onClick={() => sorting.toggleColumnSorting(key)}
+    >
+      <i className={`fa fa-${icon}`} />
     </span>
   );
 };

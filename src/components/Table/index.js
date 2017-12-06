@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { inject, observer } from "mobx-react";
 import { Alert } from "reactstrap";
 import ReactTable from "react-table";
@@ -45,6 +45,15 @@ export const Table = ({ store }) => {
   return <ReactTable {...tableProps} />;
 };
 
+/*
+Table.propTypes = {
+  store: PropTypes.shape({
+    records:
+  })
+};
+*/
+
+/*
 Table.propTypes = {
   records: PropTypes.arrayOf(PropTypes.object).isRequired,
   filteredSortedRecords: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -75,5 +84,6 @@ Table.defaultProps = {
     isRejected: false
   }
 };
+*/
 
 export default inject("store")(observer(Table));

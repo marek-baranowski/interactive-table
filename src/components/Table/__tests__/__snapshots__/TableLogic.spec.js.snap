@@ -1,0 +1,123 @@
+exports[`test multi select filter 1`] = `
+Array [
+  Object {
+    "animal": "Snake",
+    "colour": "White",
+    "name": "Hatson",
+    "pattern": "Spotted",
+    "price": 439,
+    "rating": 7,
+  },
+]
+`;
+
+exports[`test multi select filter 2`] = `
+Array [
+  Object {
+    "animal": "Turtle",
+    "colour": "Black",
+    "name": "Caroline",
+    "pattern": "Striped",
+    "price": 911,
+    "rating": 2,
+  },
+  Object {
+    "animal": "Turtle",
+    "colour": "Green",
+    "name": "Yvette",
+    "pattern": "Striped",
+    "price": 653,
+    "rating": 4,
+  },
+  Object {
+    "animal": "Turtle",
+    "colour": "Black",
+    "name": "Hattie",
+    "pattern": "Solid",
+    "price": 548,
+    "rating": 5,
+  },
+  Object {
+    "animal": "Snake",
+    "colour": "White",
+    "name": "Hatson",
+    "pattern": "Spotted",
+    "price": 439,
+    "rating": 7,
+  },
+]
+`;
+
+exports[`test range filter 1`] = `
+Array [
+  Object {
+    "animal": "Turtle",
+    "colour": "Green",
+    "name": "Yvette",
+    "pattern": "Striped",
+    "price": 653,
+    "rating": 4,
+  },
+  Object {
+    "animal": "Turtle",
+    "colour": "Black",
+    "name": "Hattie",
+    "pattern": "Solid",
+    "price": 548,
+    "rating": 5,
+  },
+]
+`;
+
+exports[`test sorting 1`] = `
+Array [
+  Object {
+    "animal": "Turtle",
+    "colour": "Black",
+    "name": "Caroline",
+    "pattern": "Striped",
+    "price": 911,
+    "rating": 2,
+  },
+  Object {
+    "animal": "Dog",
+    "colour": "White",
+    "name": "Hattie",
+    "pattern": "Solid",
+    "price": 738,
+    "rating": 3,
+  },
+  Object {
+    "animal": "Turtle",
+    "colour": "Green",
+    "name": "Yvette",
+    "pattern": "Striped",
+    "price": 653,
+    "rating": 4,
+  },
+  Object {
+    "animal": "Turtle",
+    "colour": "Black",
+    "name": "Hattie",
+    "pattern": "Solid",
+    "price": 548,
+    "rating": 5,
+  },
+  Object {
+    "animal": "Snake",
+    "colour": "White",
+    "name": "Hatson",
+    "pattern": "Spotted",
+    "price": 439,
+    "rating": 7,
+  },
+  Object {
+    "animal": "Dog",
+    "colour": "White",
+    "name": "Guadalupe",
+    "pattern": "Spotted",
+    "price": 285,
+    "rating": 8,
+  },
+]
+`;

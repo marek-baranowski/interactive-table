@@ -8,7 +8,7 @@ const MultiSelectFilter = ({ filter }) => {
       {filter.filterValues.length === 0
         ? "No filters"
         : filter.filterValues.map((value, i) => (
-            <Label check key={i}>
+            <Label check key={i} data-test="multi-select">
               <Input
                 type="checkbox"
                 checked={filter.isSelected(value)}

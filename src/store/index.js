@@ -1,8 +1,8 @@
 import { COLUMNS } from "../config";
 import DataStore from "./DataStore";
 // import { petService } from "../service";
-import { fetchData } from "./data";
+import { data } from "./data";
 
 export const createStore = () => {
-  return DataStore.create({ columns: COLUMNS }, { service: fetchData });
+  return DataStore.create({ columns: COLUMNS, records: data });
 };
