@@ -1,12 +1,11 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
 import { Alert } from "reactstrap";
-import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
+import ReactTable from 'react-table';
 import ColumnHeader from "./components/ColumnHeader";
 
 export const Table = ({ store }) => {
   const {
-    records,
     filteredSortedRecords,
     columns,
     sorting,
@@ -27,20 +26,17 @@ export const Table = ({ store }) => {
 
   const tableProps = {
     data: filteredSortedRecords,
-    keyField: columns[0].key,
-    striped: true
+    columns: columns.map(column => ({
+      Header: () => <ColumnHeader {...{ column, sorting }} />,
+      accessor: column.key
+    })),
+    minRows: 5,
+    showPagination: false,
+    sortable: false,
+    resizable: false
   };
 
-  return (
-    <BootstrapTable {...tableProps}>
-      {records.length > 0 &&
-        columns.map(column => (
-          <TableHeaderColumn dataField={column.key} key={column.key}>
-            <ColumnHeader {...{ column, sorting }} />
-          </TableHeaderColumn>
-        ))}
-    </BootstrapTable>
-  );
+  return <ReactTable {...tableProps} />;
 };
 
 export default inject("store")(observer(Table));

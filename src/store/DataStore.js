@@ -51,5 +51,8 @@ export default types
         self.requestStatus.setRejected(error);
       }
     }),
-    afterCreate: () => self.fetchRecords(getEnv(self).service)
+    afterCreate: () => {
+      const service = getEnv(self).service;
+      !!service && self.fetchRecords(service);
+    }
   }));

@@ -1,7 +1,6 @@
-import { types, getType } from "mobx-state-tree";
-import { isEmpty } from "lodash";
+import { types, getType, getParent, getRoot } from "mobx-state-tree";
+import { isEmpty, uniq } from "lodash";
 import { FILTER_TYPES } from "../config";
-import { rangesEqual } from "../utils";
 
 /* common props and methods shared between filters */
 const BaseFilterModel = types
@@ -54,6 +53,11 @@ export const MultiSelectFilterModel = types
         selectedValues: types.optional(types.array(types.string), [])
       })
       .views(self => ({
+        get filterValues() {
+          const { key } = getParent(self);
+
+          return uniq(getRoot(self).records.map(column => column[key]));
+        },
         isSelected: value => self.selectedValues.includes(value),
         getFilterData: () => self.selectedValues,
         predicate: value =>
@@ -73,15 +77,26 @@ export const RangeFilterModel = types
     BaseFilterModel,
     types
       .model({
-        maxRange: types.optional(types.array(types.number), []),
         selectedRange: types.optional(types.array(types.number), [])
       })
       .views(self => ({
+        get maxRange() {
+          const { records } = getRoot(self);
+          if (isEmpty(records)) {
+            return [];
+          }
+
+          const { key } = getParent(self);
+          const columnData = records.map(record => record[key]);
+
+          return [Math.min(...columnData), Math.max(...columnData)];
+        },
         get isActive() {
           const { selectedRange, maxRange, isPopulated } = self;
 
           return (
-            isPopulated(selectedRange) && !rangesEqual(maxRange, selectedRange)
+            isPopulated(selectedRange) &&
+            selectedRange.slice().toString() !== maxRange.slice().toString()
           );
         },
         getFilterData: () => self.selectedRange,
@@ -92,14 +107,6 @@ export const RangeFilterModel = types
         }
       }))
       .actions(self => ({
-        setMaxRange: range => {
-          if (rangesEqual(self.maxRange, range)) {
-            return;
-          }
-
-          self.maxRange = range;
-          self.setSelectedRange(range);
-        },
         setSelectedRange: range => (self.selectedRange = range)
       }))
   )

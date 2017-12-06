@@ -1,47 +1,30 @@
 import React from "react";
-import { reaction } from "mobx";
-import { inject, observer } from "mobx-react";
+import { observer } from "mobx-react";
 import { Range, createSliderWithTooltip } from "rc-slider";
 import { sliderStyles, sliderTooltipStyles } from "./styles";
-import { findMaxRange } from "utils";
 
 const RangeWithTooltip = createSliderWithTooltip(Range);
 
-class RangeFilter extends React.Component {
-  componentWillMount() {
-    reaction(() => this.props.store.records, () => this.setFilterMaxRange());
-    this.setFilterMaxRange();
-  }
+const RangeFilter = ({
+  filter: { selectedRange, maxRange, setSelectedRange, isPopulated }
+}) => {
+  const [min, max] = maxRange;
+  const value = isPopulated(selectedRange)
+    ? selectedRange.slice()
+    : maxRange.slice();
 
-  setFilterMaxRange() {
-    const { columnKey, filter, store } = this.props;
-    filter.setMaxRange(findMaxRange(store.records, columnKey));
-  }
+  return (
+    <RangeWithTooltip
+      {...{
+        className: `${sliderStyles}`,
+        min,
+        max,
+        value,
+        onChange: setSelectedRange,
+        tipProps: { overlayClassName: `${sliderTooltipStyles}` }
+      }}
+    />
+  );
+};
 
-  render() {
-    const {
-      selectedRange,
-      maxRange,
-      setSelectedRange,
-      isPopulated
-    } = this.props.filter;
-
-    const [min, max] = maxRange;
-    const value = isPopulated(selectedRange) ? selectedRange.peek() : maxRange;
-
-    return (
-      <RangeWithTooltip
-        {...{
-          className: `${sliderStyles}`,
-          min,
-          max,
-          value,
-          onChange: setSelectedRange,
-          tipProps: { overlayClassName: `${sliderTooltipStyles}` }
-        }}
-      />
-    );
-  }
-}
-
-export default inject("store")(observer(RangeFilter));
+export default observer(RangeFilter);
