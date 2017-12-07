@@ -1,0 +1,2035 @@
+exports[`test error message displayed when promise rejected 1`] = `
+<Component
+  store={
+    Object {
+      "columns": Array [
+        Object {
+          "filter": Object {
+            "isVisible": false,
+            "value": "",
+          },
+          "header": "Name",
+          "key": "name",
+          "sortable": null,
+        },
+        Object {
+          "filter": Object {
+            "isVisible": false,
+            "selectedValues": Array [],
+          },
+          "header": "Animal",
+          "key": "animal",
+          "sortable": null,
+        },
+        Object {
+          "filter": null,
+          "header": "Colour",
+          "key": "colour",
+          "sortable": null,
+        },
+        Object {
+          "filter": null,
+          "header": "Pattern",
+          "key": "pattern",
+          "sortable": null,
+        },
+        Object {
+          "filter": null,
+          "header": "Rating",
+          "key": "rating",
+          "sortable": true,
+        },
+        Object {
+          "filter": Object {
+            "isVisible": false,
+            "selectedRange": Array [],
+          },
+          "header": "Price",
+          "key": "price",
+          "sortable": true,
+        },
+      ],
+      "records": Array [],
+      "requestStatus": Object {
+        "errorMessage": null,
+        "status": "REJECTED",
+      },
+      "sorting": Object {
+        "column": null,
+        "order": null,
+      },
+    }
+  }>
+  <Alert
+    closeAriaLabel="Close"
+    color="danger"
+    isOpen={true}
+    tag="div"
+    transition={
+      Object {
+        "appear": true,
+        "baseClass": "fade",
+        "baseClassActive": "show",
+        "enter": true,
+        "exit": true,
+        "in": true,
+        "mountOnEnter": false,
+        "onEnter": [Function],
+        "onEntered": [Function],
+        "onEntering": [Function],
+        "onExit": [Function],
+        "onExited": [Function],
+        "onExiting": [Function],
+        "tag": "div",
+        "timeout": 150,
+        "unmountOnExit": true,
+      }
+    }>
+    <Fade
+      appear={true}
+      baseClass="fade"
+      baseClassActive="show"
+      className="alert alert-danger"
+      enter={true}
+      exit={true}
+      in={true}
+      mountOnEnter={false}
+      onEnter={[Function]}
+      onEntered={[Function]}
+      onEntering={[Function]}
+      onExit={[Function]}
+      onExited={[Function]}
+      onExiting={[Function]}
+      role="alert"
+      tag="div"
+      timeout={150}
+      unmountOnExit={true}>
+      <Transition
+        appear={true}
+        enter={true}
+        exit={true}
+        in={true}
+        mountOnEnter={false}
+        onEnter={[Function]}
+        onEntered={[Function]}
+        onEntering={[Function]}
+        onExit={[Function]}
+        onExited={[Function]}
+        onExiting={[Function]}
+        timeout={150}
+        unmountOnExit={true}>
+        <div
+          className="alert alert-danger fade"
+          role="alert">
+          Unexpected error: "
+          "
+        </div>
+      </Transition>
+    </Fade>
+  </Alert>
+</Component>
+`;
+
+exports[`test full UI 1`] = `
+<Component
+  store={
+    Object {
+      "columns": Array [
+        Object {
+          "filter": Object {
+            "isVisible": false,
+            "value": "",
+          },
+          "header": "Name",
+          "key": "name",
+          "sortable": null,
+        },
+        Object {
+          "filter": Object {
+            "isVisible": false,
+            "selectedValues": Array [],
+          },
+          "header": "Animal",
+          "key": "animal",
+          "sortable": null,
+        },
+        Object {
+          "filter": null,
+          "header": "Colour",
+          "key": "colour",
+          "sortable": null,
+        },
+        Object {
+          "filter": null,
+          "header": "Pattern",
+          "key": "pattern",
+          "sortable": null,
+        },
+        Object {
+          "filter": null,
+          "header": "Rating",
+          "key": "rating",
+          "sortable": true,
+        },
+        Object {
+          "filter": Object {
+            "isVisible": false,
+            "selectedRange": Array [],
+          },
+          "header": "Price",
+          "key": "price",
+          "sortable": true,
+        },
+      ],
+      "records": Array [
+        Object {
+          "animal": "Dog",
+          "colour": "White",
+          "name": "Guadalupe",
+          "pattern": "Spotted",
+          "price": 285,
+          "rating": 8,
+        },
+        Object {
+          "animal": "Turtle",
+          "colour": "Black",
+          "name": "Caroline",
+          "pattern": "Striped",
+          "price": 911,
+          "rating": 2,
+        },
+        Object {
+          "animal": "Turtle",
+          "colour": "Green",
+          "name": "Yvette",
+          "pattern": "Striped",
+          "price": 653,
+          "rating": 4,
+        },
+        Object {
+          "animal": "Dog",
+          "colour": "White",
+          "name": "Hattie",
+          "pattern": "Solid",
+          "price": 738,
+          "rating": 3,
+        },
+        Object {
+          "animal": "Turtle",
+          "colour": "Black",
+          "name": "Hattie",
+          "pattern": "Solid",
+          "price": 548,
+          "rating": 5,
+        },
+        Object {
+          "animal": "Snake",
+          "colour": "White",
+          "name": "Hatson",
+          "pattern": "Spotted",
+          "price": 439,
+          "rating": 7,
+        },
+      ],
+      "requestStatus": Object {
+        "errorMessage": null,
+        "status": "NONE",
+      },
+      "sorting": Object {
+        "column": null,
+        "order": null,
+      },
+    }
+  }>
+  <ReactTable
+    AggregatedComponent={[Function]}
+    ExpanderComponent={[Function]}
+    FilterComponent={[Function]}
+    LoadingComponent={[Function]}
+    NoDataComponent={[Function]}
+    PadRowComponent={[Function]}
+    PaginationComponent={[Function]}
+    PivotValueComponent={[Function]}
+    ResizerComponent={[Function]}
+    TableComponent={[Function]}
+    TbodyComponent={[Function]}
+    TdComponent={[Function]}
+    TfootComponent={[Function]}
+    ThComponent={[Function]}
+    TheadComponent={[Function]}
+    TrComponent={[Function]}
+    TrGroupComponent={[Function]}
+    aggregatedKey="_aggregated"
+    className=""
+    collapseOnDataChange={true}
+    collapseOnPageChange={true}
+    collapseOnSortingChange={true}
+    column={
+      Object {
+        "Aggregated": undefined,
+        "Cell": undefined,
+        "Expander": undefined,
+        "Filter": undefined,
+        "Footer": undefined,
+        "Header": undefined,
+        "Pivot": undefined,
+        "PivotValue": undefined,
+        "aggregate": undefined,
+        "className": "",
+        "filterAll": false,
+        "filterMethod": undefined,
+        "filterable": undefined,
+        "footerClassName": "",
+        "footerStyle": Object {},
+        "getFooterProps": [Function],
+        "getHeaderProps": [Function],
+        "getProps": [Function],
+        "headerClassName": "",
+        "headerStyle": Object {},
+        "minWidth": 100,
+        "resizable": undefined,
+        "show": true,
+        "sortMethod": undefined,
+        "sortable": undefined,
+        "style": Object {},
+      }
+    }
+    columns={
+      Array [
+        Object {
+          "Header": [Function],
+          "accessor": "name",
+        },
+        Object {
+          "Header": [Function],
+          "accessor": "animal",
+        },
+        Object {
+          "Header": [Function],
+          "accessor": "colour",
+        },
+        Object {
+          "Header": [Function],
+          "accessor": "pattern",
+        },
+        Object {
+          "Header": [Function],
+          "accessor": "rating",
+        },
+        Object {
+          "Header": [Function],
+          "accessor": "price",
+        },
+      ]
+    }
+    data={
+      Array [
+        Object {
+          "animal": "Dog",
+          "colour": "White",
+          "name": "Guadalupe",
+          "pattern": "Spotted",
+          "price": 285,
+          "rating": 8,
+        },
+        Object {
+          "animal": "Turtle",
+          "colour": "Black",
+          "name": "Caroline",
+          "pattern": "Striped",
+          "price": 911,
+          "rating": 2,
+        },
+        Object {
+          "animal": "Turtle",
+          "colour": "Green",
+          "name": "Yvette",
+          "pattern": "Striped",
+          "price": 653,
+          "rating": 4,
+        },
+        Object {
+          "animal": "Dog",
+          "colour": "White",
+          "name": "Hattie",
+          "pattern": "Solid",
+          "price": 738,
+          "rating": 3,
+        },
+        Object {
+          "animal": "Turtle",
+          "colour": "Black",
+          "name": "Hattie",
+          "pattern": "Solid",
+          "price": 548,
+          "rating": 5,
+        },
+        Object {
+          "animal": "Snake",
+          "colour": "White",
+          "name": "Hatson",
+          "pattern": "Spotted",
+          "price": 439,
+          "rating": 7,
+        },
+      ]
+    }
+    defaultExpanded={Object {}}
+    defaultFilterMethod={[Function]}
+    defaultFiltered={Array []}
+    defaultPageSize={20}
+    defaultResized={Array []}
+    defaultSortDesc={false}
+    defaultSortMethod={[Function]}
+    defaultSorted={Array []}
+    expanderDefaults={
+      Object {
+        "filterable": false,
+        "resizable": false,
+        "sortable": false,
+        "width": 35,
+      }
+    }
+    filterable={false}
+    freezeWhenExpanded={false}
+    getLoadingProps={[Function]}
+    getNoDataProps={[Function]}
+    getPaginationProps={[Function]}
+    getProps={[Function]}
+    getResizerProps={[Function]}
+    getTableProps={[Function]}
+    getTbodyProps={[Function]}
+    getTdProps={[Function]}
+    getTfootProps={[Function]}
+    getTfootTdProps={[Function]}
+    getTfootTrProps={[Function]}
+    getTheadFilterProps={[Function]}
+    getTheadFilterThProps={[Function]}
+    getTheadFilterTrProps={[Function]}
+    getTheadGroupProps={[Function]}
+    getTheadGroupThProps={[Function]}
+    getTheadGroupTrProps={[Function]}
+    getTheadProps={[Function]}
+    getTheadThProps={[Function]}
+    getTheadTrProps={[Function]}
+    getTrGroupProps={[Function]}
+    getTrProps={[Function]}
+    groupedByPivotKey="_groupedByPivot"
+    indexKey="_index"
+    loading={false}
+    loadingText="Loading..."
+    minRows={5}
+    nestingLevelKey="_nestingLevel"
+    nextText="Next"
+    noDataText="No rows found"
+    ofText="of"
+    onFetchData={[Function]}
+    originalKey="_original"
+    pageSizeOptions={
+      Array [
+        5,
+        10,
+        20,
+        25,
+        50,
+        100,
+      ]
+    }
+    pageText="Page"
+    pivotDefaults={Object {}}
+    pivotIDKey="_pivotID"
+    pivotValKey="_pivotVal"
+    previousText="Previous"
+    resizable={false}
+    rowsText="rows"
+    showPageJump={true}
+    showPageSizeOptions={true}
+    showPagination={false}
+    showPaginationBottom={true}
+    showPaginationTop={false}
+    sortable={false}
+    style={Object {}}
+    subRowsKey="_subRows">
+    <div
+      className="ReactTable"
+      style={Object {}}>
+      <Table
+        className="">
+        <div
+          className="rt-table">
+          <Thead
+            className="-header"
+            style={
+              Object {
+                "minWidth": "600px",
+              }
+            }>
+            <div
+              className="rt-thead -header"
+              style={
+                Object {
+                  "minWidth": "600px",
+                }
+              }>
+              <Tr>
+                <div
+                  className="rt-tr">
+                  <ThComponent
+                    className=""
+                    key="0-name"
+                    style={
+                      Object {
+                        "flex": "100 0 auto",
+                        "maxWidth": null,
+                        "width": "100px",
+                      }
+                    }
+                    toggleSort={[Function]}>
+                    <div
+                      className="rt-th"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "flex": "100 0 auto",
+                          "maxWidth": null,
+                          "width": "100px",
+                        }
+                      }>
+                      <div
+                        className="">
+                        <ColumnHeader
+                          column={
+                            Object {
+                              "filter": Object {
+                                "isVisible": false,
+                                "value": "",
+                              },
+                              "header": "Name",
+                              "key": "name",
+                              "sortable": null,
+                            }
+                          }
+                          showControls={true}
+                          sorting={
+                            Object {
+                              "column": null,
+                              "order": null,
+                            }
+                          }>
+                          <div
+                            className="d-flex">
+                            <SortingButton
+                              column={
+                                Object {
+                                  "filter": Object {
+                                    "isVisible": false,
+                                    "value": "",
+                                  },
+                                  "header": "Name",
+                                  "key": "name",
+                                  "sortable": null,
+                                }
+                              }
+                              sorting={
+                                Object {
+                                  "column": null,
+                                  "order": null,
+                                }
+                              } />
+                            <span
+                              data-css-zd2ftu="">
+                              Name
+                            </span>
+                            <FilterButton
+                              filter={
+                                Object {
+                                  "isVisible": false,
+                                  "value": "",
+                                }
+                              }>
+                              <span
+                                className={
+                                  Object {
+                                    "data-css-c730ug": "",
+                                  }
+                                }
+                                onClick={[Function]}>
+                                <i
+                                  className="fa fa-filter " />
+                                <Popover
+                                  delay={
+                                    Object {
+                                      "hide": 0,
+                                      "show": 0,
+                                    }
+                                  }
+                                  isOpen={false}
+                                  placement="top"
+                                  placementPrefix="bs-popover"
+                                  target={[Function]}
+                                  toggle={[Function]} />
+                              </span>
+                            </FilterButton>
+                          </div>
+                        </ColumnHeader>
+                      </div>
+                    </div>
+                  </ThComponent>
+                  <ThComponent
+                    className=""
+                    key="1-animal"
+                    style={
+                      Object {
+                        "flex": "100 0 auto",
+                        "maxWidth": null,
+                        "width": "100px",
+                      }
+                    }
+                    toggleSort={[Function]}>
+                    <div
+                      className="rt-th"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "flex": "100 0 auto",
+                          "maxWidth": null,
+                          "width": "100px",
+                        }
+                      }>
+                      <div
+                        className="">
+                        <ColumnHeader
+                          column={
+                            Object {
+                              "filter": Object {
+                                "isVisible": false,
+                                "selectedValues": Array [],
+                              },
+                              "header": "Animal",
+                              "key": "animal",
+                              "sortable": null,
+                            }
+                          }
+                          showControls={true}
+                          sorting={
+                            Object {
+                              "column": null,
+                              "order": null,
+                            }
+                          }>
+                          <div
+                            className="d-flex">
+                            <SortingButton
+                              column={
+                                Object {
+                                  "filter": Object {
+                                    "isVisible": false,
+                                    "selectedValues": Array [],
+                                  },
+                                  "header": "Animal",
+                                  "key": "animal",
+                                  "sortable": null,
+                                }
+                              }
+                              sorting={
+                                Object {
+                                  "column": null,
+                                  "order": null,
+                                }
+                              } />
+                            <span
+                              data-css-zd2ftu="">
+                              Animal
+                            </span>
+                            <FilterButton
+                              filter={
+                                Object {
+                                  "isVisible": false,
+                                  "selectedValues": Array [],
+                                }
+                              }>
+                              <span
+                                className={
+                                  Object {
+                                    "data-css-c730ug": "",
+                                  }
+                                }
+                                onClick={[Function]}>
+                                <i
+                                  className="fa fa-filter " />
+                                <Popover
+                                  delay={
+                                    Object {
+                                      "hide": 0,
+                                      "show": 0,
+                                    }
+                                  }
+                                  isOpen={false}
+                                  placement="top"
+                                  placementPrefix="bs-popover"
+                                  target={[Function]}
+                                  toggle={[Function]} />
+                              </span>
+                            </FilterButton>
+                          </div>
+                        </ColumnHeader>
+                      </div>
+                    </div>
+                  </ThComponent>
+                  <ThComponent
+                    className=""
+                    key="2-colour"
+                    style={
+                      Object {
+                        "flex": "100 0 auto",
+                        "maxWidth": null,
+                        "width": "100px",
+                      }
+                    }
+                    toggleSort={[Function]}>
+                    <div
+                      className="rt-th"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "flex": "100 0 auto",
+                          "maxWidth": null,
+                          "width": "100px",
+                        }
+                      }>
+                      <div
+                        className="">
+                        <ColumnHeader
+                          column={
+                            Object {
+                              "filter": null,
+                              "header": "Colour",
+                              "key": "colour",
+                              "sortable": null,
+                            }
+                          }
+                          showControls={true}
+                          sorting={
+                            Object {
+                              "column": null,
+                              "order": null,
+                            }
+                          }>
+                          <div
+                            className="d-flex">
+                            <SortingButton
+                              column={
+                                Object {
+                                  "filter": null,
+                                  "header": "Colour",
+                                  "key": "colour",
+                                  "sortable": null,
+                                }
+                              }
+                              sorting={
+                                Object {
+                                  "column": null,
+                                  "order": null,
+                                }
+                              } />
+                            <span
+                              data-css-zd2ftu="">
+                              Colour
+                            </span>
+                            <FilterButton
+                              filter={null} />
+                          </div>
+                        </ColumnHeader>
+                      </div>
+                    </div>
+                  </ThComponent>
+                  <ThComponent
+                    className=""
+                    key="3-pattern"
+                    style={
+                      Object {
+                        "flex": "100 0 auto",
+                        "maxWidth": null,
+                        "width": "100px",
+                      }
+                    }
+                    toggleSort={[Function]}>
+                    <div
+                      className="rt-th"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "flex": "100 0 auto",
+                          "maxWidth": null,
+                          "width": "100px",
+                        }
+                      }>
+                      <div
+                        className="">
+                        <ColumnHeader
+                          column={
+                            Object {
+                              "filter": null,
+                              "header": "Pattern",
+                              "key": "pattern",
+                              "sortable": null,
+                            }
+                          }
+                          showControls={true}
+                          sorting={
+                            Object {
+                              "column": null,
+                              "order": null,
+                            }
+                          }>
+                          <div
+                            className="d-flex">
+                            <SortingButton
+                              column={
+                                Object {
+                                  "filter": null,
+                                  "header": "Pattern",
+                                  "key": "pattern",
+                                  "sortable": null,
+                                }
+                              }
+                              sorting={
+                                Object {
+                                  "column": null,
+                                  "order": null,
+                                }
+                              } />
+                            <span
+                              data-css-zd2ftu="">
+                              Pattern
+                            </span>
+                            <FilterButton
+                              filter={null} />
+                          </div>
+                        </ColumnHeader>
+                      </div>
+                    </div>
+                  </ThComponent>
+                  <ThComponent
+                    className=""
+                    key="4-rating"
+                    style={
+                      Object {
+                        "flex": "100 0 auto",
+                        "maxWidth": null,
+                        "width": "100px",
+                      }
+                    }
+                    toggleSort={[Function]}>
+                    <div
+                      className="rt-th"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "flex": "100 0 auto",
+                          "maxWidth": null,
+                          "width": "100px",
+                        }
+                      }>
+                      <div
+                        className="">
+                        <ColumnHeader
+                          column={
+                            Object {
+                              "filter": null,
+                              "header": "Rating",
+                              "key": "rating",
+                              "sortable": true,
+                            }
+                          }
+                          showControls={true}
+                          sorting={
+                            Object {
+                              "column": null,
+                              "order": null,
+                            }
+                          }>
+                          <div
+                            className="d-flex">
+                            <SortingButton
+                              column={
+                                Object {
+                                  "filter": null,
+                                  "header": "Rating",
+                                  "key": "rating",
+                                  "sortable": true,
+                                }
+                              }
+                              sorting={
+                                Object {
+                                  "column": null,
+                                  "order": null,
+                                }
+                              }>
+                              <span
+                                className="css-c730ug"
+                                onClick={[Function]}>
+                                <i
+                                  className="fa fa-sort" />
+                              </span>
+                            </SortingButton>
+                            <span
+                              data-css-zd2ftu="">
+                              Rating
+                            </span>
+                            <FilterButton
+                              filter={null} />
+                          </div>
+                        </ColumnHeader>
+                      </div>
+                    </div>
+                  </ThComponent>
+                  <ThComponent
+                    className=""
+                    key="5-price"
+                    style={
+                      Object {
+                        "flex": "100 0 auto",
+                        "maxWidth": null,
+                        "width": "100px",
+                      }
+                    }
+                    toggleSort={[Function]}>
+                    <div
+                      className="rt-th"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "flex": "100 0 auto",
+                          "maxWidth": null,
+                          "width": "100px",
+                        }
+                      }>
+                      <div
+                        className="">
+                        <ColumnHeader
+                          column={
+                            Object {
+                              "filter": Object {
+                                "isVisible": false,
+                                "selectedRange": Array [],
+                              },
+                              "header": "Price",
+                              "key": "price",
+                              "sortable": true,
+                            }
+                          }
+                          showControls={true}
+                          sorting={
+                            Object {
+                              "column": null,
+                              "order": null,
+                            }
+                          }>
+                          <div
+                            className="d-flex">
+                            <SortingButton
+                              column={
+                                Object {
+                                  "filter": Object {
+                                    "isVisible": false,
+                                    "selectedRange": Array [],
+                                  },
+                                  "header": "Price",
+                                  "key": "price",
+                                  "sortable": true,
+                                }
+                              }
+                              sorting={
+                                Object {
+                                  "column": null,
+                                  "order": null,
+                                }
+                              }>
+                              <span
+                                className="css-c730ug"
+                                onClick={[Function]}>
+                                <i
+                                  className="fa fa-sort" />
+                              </span>
+                            </SortingButton>
+                            <span
+                              data-css-zd2ftu="">
+                              Price
+                            </span>
+                            <FilterButton
+                              filter={
+                                Object {
+                                  "isVisible": false,
+                                  "selectedRange": Array [],
+                                }
+                              }>
+                              <span
+                                className={
+                                  Object {
+                                    "data-css-c730ug": "",
+                                  }
+                                }
+                                onClick={[Function]}>
+                                <i
+                                  className="fa fa-filter " />
+                                <Popover
+                                  delay={
+                                    Object {
+                                      "hide": 0,
+                                      "show": 0,
+                                    }
+                                  }
+                                  isOpen={false}
+                                  placement="top"
+                                  placementPrefix="bs-popover"
+                                  target={[Function]}
+                                  toggle={[Function]} />
+                              </span>
+                            </FilterButton>
+                          </div>
+                        </ColumnHeader>
+                      </div>
+                    </div>
+                  </ThComponent>
+                </div>
+              </Tr>
+            </div>
+          </Thead>
+          <Tbody
+            className=""
+            style={
+              Object {
+                "minWidth": "600px",
+              }
+            }>
+            <div
+              className="rt-tbody"
+              style={
+                Object {
+                  "minWidth": "600px",
+                }
+              }>
+              <TrGroup
+                key="0">
+                <div
+                  className="rt-tr-group">
+                  <Tr
+                    className="-odd">
+                    <div
+                      className="rt-tr -odd">
+                      <Td
+                        className=""
+                        key="0-name"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Guadalupe
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="1-animal"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Dog
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="2-colour"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          White
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="3-pattern"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Spotted
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="4-rating"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          8
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="5-price"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          285
+                        </div>
+                      </Td>
+                    </div>
+                  </Tr>
+                </div>
+              </TrGroup>
+              <TrGroup
+                key="1">
+                <div
+                  className="rt-tr-group">
+                  <Tr
+                    className="-even">
+                    <div
+                      className="rt-tr -even">
+                      <Td
+                        className=""
+                        key="0-name"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Caroline
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="1-animal"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Turtle
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="2-colour"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Black
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="3-pattern"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Striped
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="4-rating"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          2
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="5-price"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          911
+                        </div>
+                      </Td>
+                    </div>
+                  </Tr>
+                </div>
+              </TrGroup>
+              <TrGroup
+                key="2">
+                <div
+                  className="rt-tr-group">
+                  <Tr
+                    className="-odd">
+                    <div
+                      className="rt-tr -odd">
+                      <Td
+                        className=""
+                        key="0-name"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Yvette
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="1-animal"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Turtle
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="2-colour"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Green
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="3-pattern"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Striped
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="4-rating"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          4
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="5-price"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          653
+                        </div>
+                      </Td>
+                    </div>
+                  </Tr>
+                </div>
+              </TrGroup>
+              <TrGroup
+                key="3">
+                <div
+                  className="rt-tr-group">
+                  <Tr
+                    className="-even">
+                    <div
+                      className="rt-tr -even">
+                      <Td
+                        className=""
+                        key="0-name"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Hattie
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="1-animal"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Dog
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="2-colour"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          White
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="3-pattern"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Solid
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="4-rating"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          3
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="5-price"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          738
+                        </div>
+                      </Td>
+                    </div>
+                  </Tr>
+                </div>
+              </TrGroup>
+              <TrGroup
+                key="4">
+                <div
+                  className="rt-tr-group">
+                  <Tr
+                    className="-odd">
+                    <div
+                      className="rt-tr -odd">
+                      <Td
+                        className=""
+                        key="0-name"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Hattie
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="1-animal"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Turtle
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="2-colour"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Black
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="3-pattern"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Solid
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="4-rating"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          5
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="5-price"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          548
+                        </div>
+                      </Td>
+                    </div>
+                  </Tr>
+                </div>
+              </TrGroup>
+              <TrGroup
+                key="5">
+                <div
+                  className="rt-tr-group">
+                  <Tr
+                    className="-even">
+                    <div
+                      className="rt-tr -even">
+                      <Td
+                        className=""
+                        key="0-name"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Hatson
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="1-animal"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Snake
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="2-colour"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          White
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="3-pattern"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          Spotted
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="4-rating"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          7
+                        </div>
+                      </Td>
+                      <Td
+                        className=""
+                        key="5-price"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }>
+                        <div
+                          className="rt-td"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "flex": "100 0 auto",
+                              "maxWidth": null,
+                              "width": "100px",
+                            }
+                          }>
+                          439
+                        </div>
+                      </Td>
+                    </div>
+                  </Tr>
+                </div>
+              </TrGroup>
+            </div>
+          </Tbody>
+        </div>
+      </Table>
+      <LoadingComponent
+        loading={false}
+        loadingText="Loading...">
+        <div
+          className="-loading">
+          <div
+            className="-loading-inner">
+            Loading...
+          </div>
+        </div>
+      </LoadingComponent>
+    </div>
+  </ReactTable>
+</Component>
+`;
+
+exports[`test loading message displayed when data fetching 1`] = `
+<Component
+  store={
+    Object {
+      "columns": Array [
+        Object {
+          "filter": Object {
+            "isVisible": false,
+            "value": "",
+          },
+          "header": "Name",
+          "key": "name",
+          "sortable": null,
+        },
+        Object {
+          "filter": Object {
+            "isVisible": false,
+            "selectedValues": Array [],
+          },
+          "header": "Animal",
+          "key": "animal",
+          "sortable": null,
+        },
+        Object {
+          "filter": null,
+          "header": "Colour",
+          "key": "colour",
+          "sortable": null,
+        },
+        Object {
+          "filter": null,
+          "header": "Pattern",
+          "key": "pattern",
+          "sortable": null,
+        },
+        Object {
+          "filter": null,
+          "header": "Rating",
+          "key": "rating",
+          "sortable": true,
+        },
+        Object {
+          "filter": Object {
+            "isVisible": false,
+            "selectedRange": Array [],
+          },
+          "header": "Price",
+          "key": "price",
+          "sortable": true,
+        },
+      ],
+      "records": Array [],
+      "requestStatus": Object {
+        "errorMessage": null,
+        "status": "PENDING",
+      },
+      "sorting": Object {
+        "column": null,
+        "order": null,
+      },
+    }
+  }>
+  <span>
+    Loading data...
+  </span>
+</Component>
+`;
