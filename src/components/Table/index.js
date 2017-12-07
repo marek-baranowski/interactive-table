@@ -39,7 +39,8 @@ export const Table = ({ store }) => {
     minRows: 5,
     showPagination: false,
     sortable: false,
-    resizable: false
+    resizable: false,
+    noDataText: 'No records found'
   };
 
   return <ReactTable {...tableProps} />;
