@@ -7,7 +7,6 @@ import SortingButton from "../components/SortingButton";
 import { FILTER_TYPES, COLUMNS } from "config";
 import records from "store/__mockData__/records";
 import DataStore from "store/DataStore";
-import { data, fetchData } from "store/data";
 
 const findHeaderCell = (wrapper, columnKey) => {
   return wrapper.find(ColumnHeader).filterWhere(columnHeader => {
