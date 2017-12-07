@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Popover, PopoverBody } from "reactstrap";
 import { observer } from "mobx-react";
 import { iconStyles } from "../ColumnHeader/styles";
@@ -36,12 +37,12 @@ class FilterButton extends React.Component {
           <PopoverBody>
             {
               {
-                [FILTER_TYPES.STRING_FILTER]: <StringFilter {...{ filter }} />,
+                [FILTER_TYPES.STRING_FILTER]: filter => <StringFilter {...{ filter }} />,
                 [FILTER_TYPES.MULTI_SELECT_FILTER]: (
-                  <MultiSelectFilter {...{ filter }} />
+                  filter => <MultiSelectFilter {...{ filter }} />
                 ),
-                [FILTER_TYPES.RANGE_FILTER]: <RangeFilter {...{ filter }} />
-              }[filter.type]
+                [FILTER_TYPES.RANGE_FILTER]: filter => <RangeFilter {...{ filter }} />
+              }[filter.type](filter)
             }
           </PopoverBody>
         </Popover>
@@ -49,5 +50,14 @@ class FilterButton extends React.Component {
     );
   }
 }
+
+FilterButton.propTypes = {
+  filter: PropTypes.shape({
+    isActive: PropTypes.bool.isRequired,
+    isVisible: PropTypes.bool.isRequired,
+    type: PropTypes.string.isRequired,
+    toggleVisibility: PropTypes.func.isRequired
+  })
+};
 
 export default observer(FilterButton);

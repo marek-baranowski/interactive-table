@@ -1,5 +1,6 @@
 import React from "react";
-import { observer } from "mobx-react";
+import PropTypes from "prop-types";
+import { observer, PropTypes as MobxPropTypes } from "mobx-react";
 import { Range, createSliderWithTooltip } from "rc-slider";
 import { sliderStyles, sliderTooltipStyles } from "./styles";
 
@@ -25,6 +26,15 @@ const RangeFilter = ({
       }}
     />
   );
+};
+
+RangeFilter.propTypes = {
+  filter: PropTypes.shape({
+    selectedRange: MobxPropTypes.arrayOrObservableArrayOf(PropTypes.number),
+    maxRange: MobxPropTypes.arrayOrObservableArrayOf(PropTypes.number),
+    setSelectedRange: PropTypes.func.isRequired,
+    isPopulated: PropTypes.func.isRequired
+  }).isRequired
 };
 
 export default observer(RangeFilter);

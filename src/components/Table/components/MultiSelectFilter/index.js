@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { observer } from "mobx-react";
 import { Input, Label } from "reactstrap";
 
@@ -19,6 +20,14 @@ const MultiSelectFilter = ({ filter }) => {
           ))}
     </div>
   );
+};
+
+MultiSelectFilter.propTypes = {
+  filter: PropTypes.shape({
+    filterValues: PropTypes.arrayOf(PropTypes.string).isRequired,
+    isSelected: PropTypes.func.isRequired,
+    toggleValue: PropTypes.func.isRequired
+  }).isRequired
 };
 
 export default observer(MultiSelectFilter);
