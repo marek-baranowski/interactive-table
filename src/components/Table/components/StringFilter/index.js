@@ -1,4 +1,5 @@
 import React from "react";
+import { observer } from "mobx-react";
 import PropTypes from "prop-types";
 import { Input } from "reactstrap";
 
@@ -23,4 +24,4 @@ StringFilter.defaultProps = {
   }
 };
 
-export default StringFilter;
+export default observer(StringFilter);
